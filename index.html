@@ -1,13 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = 'en-us'>
 
 <head>
-  <meta charset="utf-8">
-  <title>Multiple AJAX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    </style>
 </head>
 
+
 <body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="resources/javascript/app.js" type="text/javascript"></script>
-  </body>
-  </html>
+    <div id="map"></div> 
+
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDblNnn9YtrO65sBpTIhWrHnDD3GNoVgOw",
+        authDomain: "project1-bc207.firebaseapp.com",
+        databaseURL: "https://project1-bc207.firebaseio.com",
+        projectId: "project1-bc207",
+        storageBucket: "project1-bc207.appspot.com",
+        messagingSenderId: "780592600359"
+      };
+      firebase.initializeApp(config);
+    </script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script type='text/javascript' src='assets/javascript/app.js'></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo&callback=initMap"
+    async defer></script>
+    <!-- Google Maps API needs to be placed below the script that calls it -->
+
+</body>
+
+</html>
