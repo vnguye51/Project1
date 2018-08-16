@@ -28,9 +28,9 @@ $.ajax({
   url: "https://jobs.github.com/positions.json?description=python&location=new+york",
   method: "GET"
 }).then(function (response) {
-  console.log(response, );
+  console.log(response );
   //grab data from ajax respone and you can see it in console
-  //loop through resonse 
+  //loop through resonse so dont have to type twice
   for (var i = 0; i < response.length; i++) {
   jobTitle = response[i]['title']
   jobLocation = response[i]["location"]
@@ -40,7 +40,7 @@ $.ajax({
   //add row
   $("tbody").append("<tr><td>" + jobPosted + "<td>" + jobType + "</td><td>" + jobTitle + "</td><td>" + jobLocation + "</td><td>" + jobCompany + "</td></tr>")
   console.log(jobPosted)
-})
+}})
 
 
   
