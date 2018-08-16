@@ -2,7 +2,7 @@ var map;
 var jobTitle
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
+    center: { lat: -34.397, lng: 150.644 },
     zoom: 8
   });
 }
@@ -13,23 +13,34 @@ $.ajax({
   url: queryURL,
   method: "GET",
 })
-  .then(function(response) {
+  .then(function (response) {
     var data = response.data;
     console.log(response)
   })
+//gave variable
+var jobTitle;
+var jobLocation;
+var jobType;
+var jobCompany;
+var jobPosted;
 
-  $.ajax({
-    url:"https://jobs.github.com/positions.json?description=python&location=new+york",
-    method: "GET"
-  }).then(function(response) {
-    console.log(response,);
-    jobTitle = response[0]['title']
-    jobLocation = response[0]["location"]
-    jobType = response[0]["type"]
-    jobCompany = response[0]["company"]
+$.ajax({
+  url: "https://jobs.github.com/positions.json?description=python&location=new+york",
+  method: "GET"
+}).then(function (response) {
+  console.log(response, );
+  //grab data from ajax respone and you can see it in console
+  //loop through resonse 
+  for (var i = 0; i < response.length; i++) {
+  jobTitle = response[i]['title']
+  jobLocation = response[i]["location"]
+  jobType = response[i]["type"]
+  jobCompany = response[i]["company"]
+  jobPosted = response[i]["created_at"]
+  //add row
+  $("tbody").append("<tr><td>" + jobPosted + "<td>" + jobType + "</td><td>" + jobTitle + "</td><td>" + jobLocation + "</td><td>" + jobCompany + "</td></tr>")
+  console.log(jobPosted)
+})
 
-  })
-    
-  function myCreateFunction() {
-   var row = joblist.insertRow(0)
-$("#joblist")
+
+  
