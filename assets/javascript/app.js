@@ -1,4 +1,5 @@
 var map;
+var jobTitle
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -34.397, lng: 150.644},
@@ -16,3 +17,19 @@ $.ajax({
     var data = response.data;
     console.log(response)
   })
+
+  $.ajax({
+    url:"https://jobs.github.com/positions.json?description=python&location=new+york",
+    method: "GET"
+  }).then(function(response) {
+    console.log(response,);
+    jobTitle = response[0]['title']
+    jobLocation = response[0]["location"]
+    jobType = response[0]["type"]
+    jobCompany = response[0]["company"]
+
+  })
+    
+  function myCreateFunction() {
+   var row = joblist.insertRow(0)
+$("#joblist")
