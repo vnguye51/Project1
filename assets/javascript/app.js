@@ -1,23 +1,45 @@
 
 var map;
-var jobTitle
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8
-  });
-}
+var location;
 
-console.log('test')
-var queryURL = "http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
+var initMap
+
+var jobTitle
+var responseArray =[]
+
+var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
 $.ajax({
   url: queryURL,
   method: "GET",
 })
   .then(function (response) {
     var data = response.data;
-    console.log(response)
   })
+
+
+// var queryURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=New York,NY&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo'
+// $.ajax({
+//   url: queryURL,
+//   method: "GET",
+// })
+//   .then(function(response) {
+//     var location = response.results[0].geometry.location;
+//     initMap = function(){
+//       map = new google.maps.Map(document.getElementById('map'), {
+//         center: location,
+//         zoom: 8
+//       });
+//       var marker = new google.maps.Marker({
+//         position: location,
+//         map: map,
+//         title: 'Hello World!'
+//       });
+
+//       var trafficLayer = new google.maps.TrafficLayer();
+//       trafficLayer.setMap(map);
+      
+//     }
+//   })
 //gave variable
 var jobTitle;
 var jobLocation;
@@ -26,24 +48,37 @@ var jobCompany;
 var jobPosted;
 
 $.ajax({
-  url: "https://jobs.github.com/positions.json?description=python&location=new+york",
+  url: "https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description=python&location=new+york",
   method: "GET"
 }).then(function (response) {
-  console.log(response );
+  responseArray = []
   //grab data from ajax respone and you can see it in console
   //loop through resonse so dont have to type twice
   for (var i = 0; i < response.length; i++) {
+<<<<<<< HEAD
   jobTitle = response[i]['title']
   jobLocation = response[i]["location"]
   jobType = response[i]["type"]
   jobCompany = response[i]["company"]
   jobPosted = response[i]["created_at"]
   
+=======
+    jobTitle = response[i]['title']
+    jobLocation = response[i]["location"]
+    jobType = response[i]["type"]
+    jobCompany = response[i]["company"]
+    jobPosted = response[i]["created_at"]
+    responseArray.push(response[i])
+>>>>>>> 3f764fb43202e4be16f0b0e3840ca790ddb267ed
   //add row
-  $("tbody").append("<tr><td>" + jobPosted + "<td>" + jobType + "</td><td>" + jobTitle + "</td><td>" + jobLocation + "</td><td>" + jobCompany + "</td></tr>")
-  console.log(jobPosted)
+  var newRow = $('<tr>')
+  newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
+  newRow.addClass('jobEntry')
+  // newRow.attr('data', response[i])
+  $('tbody').append(newRow)
 }})
 
+<<<<<<< HEAD
 $("#search").on("click", function (event){
 console.log('ajsdf')
 
@@ -60,3 +95,11 @@ console.log('ajsdf')
 
    
   
+=======
+$(document).on('click','.jobEntry',function(){
+  sessionStorage.responseArray = JSON.stringify(responseArray);
+  window.open('detailstest.html', '_blank');
+
+})
+
+>>>>>>> 3f764fb43202e4be16f0b0e3840ca790ddb267ed
