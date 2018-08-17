@@ -4,4 +4,12 @@
     height: 400px;
     width: 400px;
   }
+  @media only screen and (max-width: 640px){
 
+  }
+  /* body{
+    background-image: url(../images/NinjaLogo.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-position-y: top;
+  } */
