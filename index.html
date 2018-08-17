@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
 
-    <title>Job Ninja!</title>
+    <title>Job Ninja! - main page</title>
     <style>
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -19,86 +19,70 @@
 </head>
 
 
-<body>
+<body class="bg-light">
     <div class="container">
         <!-- row 1 contains our header and title -->
         <div class="row">
             <div class="col-md-12">
-                <div class="jumbotron jumbotron-fluid">
-                    <div class="container text-center">
-                        <h1 class="display-2">Job Ninja!</h1>
-                        <img src="#" alt="alex as a ninja">
+                <div class="jumbotron jumbotron-fluid p-3 mt-3" style="background:skyblue">
+                    <div class="container mx-auto" style="padding-left:25%" >
+                        <h1 class="display-3 float-left mr-3">Job Ninja!</h1>
+                        <img src="assets/images/NinjaLogo.jpg" style="width:130px;" alt="alex as a ninja">
                     </div>
                 </div>
             </div>
         </div>
         <div class="row">
-            <!-- row 2 will have user input labels-->
             <div class="col-md-8">
                 <form>
                     <div class="form-group">
                         <label>Job Search</label>
-                    </div>
-
-                </form>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label>State</label>
-                </div>
-
-            </div>
-            <div class="col-md-2">
-
-            </div>
-
-        </div>
-        <!-- row 3 has user input fields adn submit button -->
-        <div class="row">
-            <div class="col-md-8">
-                <form>
-                    <div class="form-group">
                         <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter job title">
                     </div>
-
+                </form> 
+            </div>
+            <div class="col-md-2">
+                <form>
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="CA">
+                    </div>
+                  </form>
+            </div>
+            <div class="col-md-2">
+                <form>
+                    <label class="invisible" >not</label>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary center-block" > <i class="fas fa-search pr-1"  ></i> Search</button>
+                    </div>
                 </form>
             </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="CA">
-                </div>
-
-            </div>
-            <div class="col-md-2">
-
-                <button type="submit" class="btn btn-primary"><i class="fas fa-search pr-1"></i> Search</button>
-            </div>
-
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card" style="border: skyblue solid">
                     <!-- table goes here -->
-                    <table class="table" id="trainList">
-                        <thead>
+                    <table class="table" >
+                        <thead class="card-header" style="background-color:skyblue" >
                             <tr>
-                                <th scope="col">Date Posted</th>
-                                <th scope="col">Full or Part Time</th>
-                                <th scope="col">Position Title</th>
-                                <th scope="col">Location</th>
-                                <th scope="col">Company URL</th>
+                                <th class="colum1" scope="col" style="font-weight: bold;" >Date Posted</th>
+                                <th scope="col" style="font-weight: bold;">Full or Part Time</th>
+                                <th scope="col" style="font-weight: bold;">Position Title</th>
+                                <th scope="col" style="font-weight: bold;">Location</th>
+                                <th scope="col" style="font-weight: bold;">Company URL</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="jobList">
                             <tr>
-                                <td>8/15/2018</td>
+                                <!-- id all column 1 items -->
+                                <td class="colum1" >8/15/2018</td>
                                 <td>FT</td>
                                 <td>Programmer</td>
                                 <td>New York,NY</td>
                                 <td>www.Youwannaworkhere.com</td>
                             </tr>
                             <tr>
-                                <td>8/12/2018</td>
+                                <td class="colum1">8/12/2018</td>
                                 <td>PT</td>
                                 <td>Developer</td>
                                 <td>San Francisco,CA</td>
@@ -119,9 +103,10 @@
 
     </div>
 
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
         // Initialize Firebase
         var config = {
