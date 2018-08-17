@@ -1,3 +1,4 @@
+
 var map;
 var jobTitle
 function initMap() {
@@ -37,10 +38,25 @@ $.ajax({
   jobType = response[i]["type"]
   jobCompany = response[i]["company"]
   jobPosted = response[i]["created_at"]
+  
   //add row
   $("tbody").append("<tr><td>" + jobPosted + "<td>" + jobType + "</td><td>" + jobTitle + "</td><td>" + jobLocation + "</td><td>" + jobCompany + "</td></tr>")
   console.log(jobPosted)
 }})
 
+$("#search").on("click", function (event){
+console.log('ajsdf')
 
+
+  var jobSearch = $("#jsearchInput").val().trim()
+  var jobState = $("#stateInput").val().trim()
+  console.log(jobSearch)
+  
+
+
+})
+
+
+
+   
   
