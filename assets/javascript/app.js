@@ -55,21 +55,12 @@ $.ajax({
   //grab data from ajax respone and you can see it in console
   //loop through resonse so dont have to type twice
   for (var i = 0; i < response.length; i++) {
-<<<<<<< HEAD
-  jobTitle = response[i]['title']
-  jobLocation = response[i]["location"]
-  jobType = response[i]["type"]
-  jobCompany = response[i]["company"]
-  jobPosted = response[i]["created_at"]
-  
-=======
     jobTitle = response[i]['title']
     jobLocation = response[i]["location"]
     jobType = response[i]["type"]
     jobCompany = response[i]["company"]
     jobPosted = response[i]["created_at"]
     responseArray.push(response[i])
->>>>>>> 3f764fb43202e4be16f0b0e3840ca790ddb267ed
   //add row
   var newRow = $('<tr>')
   newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
@@ -78,28 +69,9 @@ $.ajax({
   $('tbody').append(newRow)
 }})
 
-<<<<<<< HEAD
-$("#search").on("click", function (event){
-console.log('ajsdf')
-
-
-  var jobSearch = $("#jsearchInput").val().trim()
-  var jobState = $("#stateInput").val().trim()
-  console.log(jobSearch)
-  
-
-
-})
-
-
-
-   
-  
-=======
 $(document).on('click','.jobEntry',function(){
   sessionStorage.responseArray = JSON.stringify(responseArray);
   window.open('detailstest.html', '_blank');
 
 })
 
->>>>>>> 3f764fb43202e4be16f0b0e3840ca790ddb267ed
