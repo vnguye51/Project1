@@ -7,9 +7,12 @@
   @media only screen and (max-width: 640px){
 
   }
-  /* body{
-    background-image: url(../images/NinjaLogo.jpg);
-    background-position: top;
-    background-repeat: no-repeat;
+  body{
+    background-image: url(../images/mainBackground.jpg);
+    background-position: center;
+    background-repeat: repeat;
     background-position-y: top;
-  } */
+  }
+.navtitle{
+  background-image: url(../images/woodBackground2.jpg);
+}
