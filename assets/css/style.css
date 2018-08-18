@@ -1,8 +1,8 @@
 
 /* Google Maps API */
 #map {
-    height: 400px;
-    width: 400px;
+    width: 200px;
+    height: 200px;
   }
   @media only screen and (max-width: 640px){
 
