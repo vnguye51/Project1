@@ -7,20 +7,21 @@ $('#jobInfo').append(jobInfo.description)
 $('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title)
 var divPointers = []
 
+$(document).on('click','.housing',function(event){
+  setMapOnAll(null)
+  directionsDisplay.setDirections($(this).data())
+})
+
 $('#housingInfo').on('dataAdded',function(event,index){
   //Insert the new div in sorted order
   //This is needed because the table divs are produced dynamically as google finishes their api calls
   //TODO sort by divpointer and rearrange the divs in the preferred sort
-  console.log(index)
   var addedDiv = $('#housingInfo').children().last().detach()
-  console.log(addedDiv)
   // addedDiv.insertAfter("#"+index)
   var placed = false
   for(var i = 0;i<divPointers.length;i++){
     if(divPointers[i] > +index){
       divPointers.splice(i,0,+index)
-      console.log('hi',divPointers[i+1],'#'+divPointers[i+1])
-      console.log(addedDiv)
       addedDiv.insertBefore('#'+divPointers[i+1])
       placed = true
       return
@@ -83,7 +84,6 @@ function callZillow(address){
       var d = (data.length-2)/4.0//TODO: Let the 4 be a user input variable later on and move the data array to the global scope
       var i = 1
       while(i*d<data.length-2){//
-        console.log(i*d)
         homeCandidates.push(parseElement(data[Math.round(i*d - 1)]))
         i += 1
       }
@@ -91,7 +91,6 @@ function callZillow(address){
       
       for(var i = 0; i<homeCandidates.length;i++){
         homeCandidates[i].index = i
-        console.log(homeCandidates[i].name)
         var homeAddress = homeCandidates[i].name + " " + city + ' ' + state
         calcRoute(homeCandidates[i],homeAddress,businessAddress)
       }
@@ -174,9 +173,11 @@ function calcRoute(homeObject,origin,destination) {
         var duration = response.routes[0].legs[0].duration.text
         var distance = response.routes[0].legs[0].distance.text
         if (status == 'OK') {
-          var newRow = $('<row>').attr('id',homeObject.index)
+          var newRow = $('<div>').attr('id',homeObject.index).addClass('row').addClass(
+            'housing')
+          newRow.data(response)
           newRow.append($("<div>").html(homeObject.name).addClass('col-md-3'))
-          newRow.append($("<div>").html(homeObject.zindex).addClass('col-md-3'))
+          newRow.append($("<div>").html('$'+homeObject.zindex).addClass('col-md-3'))
           newRow.append($("<div>").html(distance).addClass('col-md-3'))
           newRow.append($("<div>").html(duration).addClass('col-md-3'))
           $('#housingInfo').append(newRow)
