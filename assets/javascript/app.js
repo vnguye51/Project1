@@ -1,18 +1,49 @@
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
-}
 
-console.log('test')
-var queryURL = "http://www.zillow.com/webservice/GetSearchResults.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&address=2114+Bigelow+Ave&citystatezip=Seattle%2C+WA";
+var map;
+var location;
+
+var initMap
+
+var jobTitle
+var responseArray =[]
+
+
+
+
+
+var jobTitle;
+var jobLocation;
+var jobType;
+var jobCompany;
+var jobPosted;
+
+
+
 $.ajax({
-  url: queryURL,
-  method: "GET",
+  url: "https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description=python&location=new+york",
+  method: "GET"
+}).then(function (response) {
+  responseArray = []
+  //grab data from ajax respone and you can see it in console
+  //loop through resonse so dont have to type twice
+  for (var i = 0; i < response.length; i++) {
+    jobTitle = response[i]['title']
+    jobLocation = response[i]["location"]
+    jobType = response[i]["type"]
+    jobCompany = response[i]["company"]
+    jobPosted = (response[i]["created_at"]).slice(0,10)
+    responseArray.push(response[i])
+  //add row
+  var newRow = $('<tr>')
+  newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
+  newRow.addClass('jobEntry')
+  newRow.attr('data', i)
+  $('tbody').append(newRow)
+}})
+
+$(document).on('click','.jobEntry',function(){
+  sessionStorage.responseArray = JSON.stringify(responseArray[+$(this).attr('data')]);
+  window.open('detailTab.html', '_blank');
+
 })
-  .then(function(response) {
-    var data = response.data;
-    console.log(response)
-  })
+
