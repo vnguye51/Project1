@@ -35,15 +35,15 @@ $.ajax({
     responseArray.push(response[i])
   //add row
   var newRow = $('<tr>')
-  newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
+  newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td><a href='detailTab.html' target='_blank'>" + jobTitle + "</a></td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
   newRow.addClass('jobEntry')
   newRow.attr('data', i)
   $('tbody').append(newRow)
 }})
 
-$(document).on('click','.jobEntry',function(){
-  sessionStorage.responseArray = JSON.stringify(responseArray[+$(this).attr('data')]);
-  window.open('detailTab.html', '_blank');
+// $(document).on('click','.jobEntry',function(){
+//   sessionStorage.responseArray = JSON.stringify(responseArray[+$(this).attr('data')]);
+//   window.open('detailTab.html', '_blank');
 
-})
+// })
 
