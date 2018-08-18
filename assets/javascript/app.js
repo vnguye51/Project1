@@ -49,18 +49,20 @@ var jobPosted;
 
 $("#search").on("click", function (event){ 
   event.preventDefault()
-console.log('ajsdf') 
   
   var jobSearch = $("#jsearchInput").val().trim() 
   var jobState = $("#stateInput").val().trim() 
+  console.log(jobSearch,jobState) 
 
   $.ajax({
     url: "https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description="+jobSearch+"&location="+jobState,
     method: "GET"
   }).then(function (response) {
+    console.log("https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description="+jobSearch+"&location="+jobState)
     responseArray = []
     //grab data from ajax respone and you can see it in console
     //loop through resonse so dont have to type twice
+    console.log('asdf')
     for (var i = 0; i < response.length; i++) {
       jobTitle = response[i]['title']
       jobLocation = response[i]["location"]
@@ -69,9 +71,15 @@ console.log('ajsdf')
       jobPosted = response[i]["created_at"]
   
       responseArray.push(response[i])
-  
-console.log(jobSearch,jobState) 
-  }}) 
+   //add row
+      var newRow = $('<tr>')
+      newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
+      newRow.addClass('jobEntry')
+      // newRow.attr('data', response[i])
+      $('tbody').append(newRow)
+
+    }
+  }) 
 
 
   $(document).on('click','.jobEntry',function(){ 
@@ -79,29 +87,6 @@ console.log(jobSearch,jobState)
    window.open('detailstest.html', '_blank'); 
 
   }) 
-
+})
   
-  //add row
-    var newRow = $('<tr>')
-    newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
-    newRow.addClass('jobEntry')
-    // newRow.attr('data', response[i])
-    $('tbody').append(newRow)
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
