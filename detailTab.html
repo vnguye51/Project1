@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='en-us'>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -10,122 +9,110 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-
-    <title>Job Ninja! - main page</title>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    </style>
+    <title>Job Ninja!-Detail Tab</title>
 </head>
-
 <body>
-
     <div class="container">
-        <!-- row 1 contains our header and title -->
         <div class="row">
-                <div class="col-md-12">
-                    <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
-                        <div class="container mx-auto" style="padding-left:32%">
-                            <h1 class="display-3 float-left" style="font-weight:bold;color: rgb(101, 161, 10)">Job Ninja!</h1>
-                            <img class="ml-5" src="assets/images/AlexNinja2.jpg" style="width:150px;" alt="alex as a ninja">
+            <div class="col-md-12">
+                <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
+                    <div class="container mx-auto" style="padding-left:25%">
+                        <h1 class="display-3 float-left" style="font-weight:bold;color: rgb(101, 161, 10)">Job Ninja!</h1>
+                        <img class="ml-5" src="assets/images/NinjaLogo.jpg" style="width:130px;" alt="alex as a ninja">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- div below contains two Columns each called col-md-6 -->
+        <div class="row">
+            <!-- first column  -->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="jumbotron jumbotron-fluid p-2">
+                            <div class="container text-center">
+                                <h2 id="company-jobTitle" class="display-5">CrowdTwistLead Data Engineer</h2>   
+                            </div>
                         </div>
                     </div>
                 </div>
-        </div>
-        <div class="row">
-            <div class="col-md-8">
-                <form>
-                    <div class="form-group">
-                        <label style="font-weight:bold; color: rgb(43, 71, 1)">Job Search</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter job title">
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                                <div class="card-header">
+                                        <strong>Job info:</strong> 
+                                </div>
+                                <div class="card-body" id="jobInfo">
+                                </div>
+                        </div>
                     </div>
-                </form> 
+                </div>
+               
             </div>
-            <div class="col-md-2">
-                <form>
-                    <div class="form-group">
-                        <label style="font-weight:bold; color: rgb(43, 71, 1)">State</label>
-                        <input type="text" class="form-control" id="exampleInputPassword1" placeholder="CA">
+
+            <!-- second column -->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id ='map'></div>
+
                     </div>
-                  </form>
-            </div>
-            <div class="col-md-2">
-                <form>
-                    <label class="invisible" >not</label>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success center-block" > <i class="fas fa-search pr-1"  ></i> Search</button>
+                </div>
+                <!-- second row of second column -->
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Weather:</strong>
+                            </div>
+                            <div class="card-body">
+                                    <p>Weather Data here</p>
+                            </div>
+                        </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card" style="border: black">
-                    <!-- table goes here -->
-                    <table class="table" style="overflow:scroll" >
-                        <thead class="card-header" style="background-color: rgb(170, 214, 48)" >
-                            <tr>
-                                <th class="colum1" scope="col" style="font-weight: bold;" >Date Posted</th>
-                                <th scope="col" style="font-weight: bold;">Full or Part Time</th>
-                                <th scope="col" style="font-weight: bold;">Position Title</th>
-                                <th scope="col" style="font-weight: bold;">Location</th>
-                                <th scope="col" style="font-weight: bold;">Company URL</th>
-                            </tr>
-                        </thead>
-                        <tbody id="jobList">
-                            <tr>
-                                <!-- id all column 1 items -->
-                                <td class="colum1" >8/15/2018</td>
-                                <td>FT</td>
-                                <td>Programmer</td>
-                                <td>New York,NY</td>
-                                <td>www.Youwannaworkhere.com</td>
-                            </tr>
-                            <tr>
-                                <td class="colum1">8/12/2018</td>
-                                <td>PT</td>
-                                <td>Developer</td>
-                                <td>San Francisco,CA</td>
-                                <td>www.Youdontwannaworkhere.com</td>
-                            </tr>
-                            <tr>
-                                <td>8/10/2018</td>
-                                <td>FT</td>
-                                <td>Coffee Gopher</td>
-                                <td>Berkeley, CA</td>
-                                <td>www.Reallywiredemployees.com</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                </div>
+                    <!-- thrid row on second column for housing info -->
+                    <div class="row my-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Housing in the area:</strong> 
+                                    </div>
+                                    <div id="housingInfo" class="card-body">
+                                        <!-- place holder -->
+                                        <div class="row">
+                                            <div id="housingLocation" class="col-md-3">Location</div>
+                                            <div id="housingMoney" class="col-md-3">$</div>
+                                            <div id="housingDistance" class="col-md-3">distance</div>
+                                            <div id="housingTime" class="col-md-3">time</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row my-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                                <strong>Addition Info:</strong> 
+                                    </div>
+                                    <div class="card-body">
+                                            <p>Restaurant go here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of second column -->
                 </div>
             </div>
         </div>
 
-    </div>
-
-    <script
-  src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDblNnn9YtrO65sBpTIhWrHnDD3GNoVgOw",
-            authDomain: "project1-bc207.firebaseapp.com",
-            databaseURL: "https://project1-bc207.firebaseio.com",
-            projectId: "project1-bc207",
-            storageBucket: "project1-bc207.appspot.com",
-            messagingSenderId: "780592600359"
-        };
-        firebase.initializeApp(config);
-    </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-    <script type='text/javascript' src='assets/javascript/app.js'></script>
     
-    <!-- Google Maps API needs to be placed below the script that calls it -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"></script>
+    <script type='text/javascript' src='assets/javascript/details.js'></script>
+
 
 </body>
