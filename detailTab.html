@@ -17,7 +17,7 @@
             <div class="col-md-12">
                 <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
                     <div class="container mx-auto" style="padding-left:25%">
-                        <h1 class="display-3 float-left" style="font-weight:bold;color: silver">Job Ninja!</h1>
+                        <h1 class="display-3 float-left" style="font-weight:bold;color: rgb(101, 161, 10)">Job Ninja!</h1>
                         <img class="ml-5" src="assets/images/NinjaLogo.jpg" style="width:130px;" alt="alex as a ninja">
                     </div>
                 </div>
@@ -29,13 +29,13 @@
                     <div class="col-md-12">
                         <div class="jumbotron jumbotron-fluid p-2">
                             <div class="container text-center">
-                                <h2 class="display-5">CrowdTwistLead Data Engineer</h2>
+                                <h2 id="company-jobTitle" class="display-5">CrowdTwistLead Data Engineer</h2>   
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- not need anymore -- second row first column for text -->
 
-                <!-- second row first column for text -->
                 <!-- <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card">
@@ -53,16 +53,15 @@
                     <div class="col-md-12">
                         <div class="card">
                                 <div class="card-header">
-                                        <strong>Company info:</strong> 
+                                        <strong>Job info:</strong> 
                                 </div>
-                            <div class="card-body">
-                                    <p>About Us:
-                                            CrowdTwist is seeking a Data Engineer for our growing team based in New York City. In this role, you will have full ownership of the CrowdTwist Data Pipeline to satisfy our ever growing data needs. You will be involved in many different projects as we continue to grow and enhance our platform.  You'll be working with large data sets across millions of users and will directly influence the loyalty program offerings for many of our clients, such as Pepsi, Marvel, Carhartt, Nestlé Purina, AMC’s The Walking Dead, TOMS, Steve Madden and Zumiez.</p>
-                            </div>
+                                <div class="card-body" id="jobInfo">
+                                </div>
                         </div>
                     </div>
                 </div>
-                <div class="row my-3">
+                <!-- not need it anymore -->
+                <!-- <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -81,8 +80,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row my-3">
+                </div> -->
+                <!-- <div class="row my-3">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
@@ -103,17 +102,62 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
+
 
         </div>
         <div class="col-md-6">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class ="display-5 text-center">Map Data</h2>
-                    <div id ='map'></div>>
+                    <div id ='map'></div>
 
                 </div>
+                <!-- second row of second column -->
+                <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                            <strong>Weather:</strong> 
+                                </div>
+                                <div class="card-body">
+                                        <p>Weather Data here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <!-- thrid row on second column for housing info -->
+                <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>Housing in the area:</strong> 
+                                </div>
+                                <div id="housingInfo" class="card-body">
+                                    <!-- place holder -->
+                                    <div class="row">
+                                        <div id="housingLocation" class="col-md-3">Location</div>
+                                        <div id="housingMoney" class="col-md-3">$</div>
+                                        <div id="housingDistance" class="col-md-3">distance</div>
+                                        <div id="housingTime" class="col-md-3">time</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                 </div>
+                 <div class="row my-3">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                            <strong>Addition Info:</strong> 
+                                </div>
+                                <div class="card-body">
+                                        <p>Restaurant go here</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end of second column -->
             </div>
         </div>
     </div>

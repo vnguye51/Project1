@@ -192,8 +192,8 @@ function displayRoute(route,status){
     setMapOnAll(null);
     directionsDisplay.setDirections(route)
 }
-// initMap()
-// geocodeAddress(address,geocoder,map)
+initMap()
+geocodeAddress(address,geocoder,map)
 // calcRoute()
 
 //UTILITY FUNCTIONS//
