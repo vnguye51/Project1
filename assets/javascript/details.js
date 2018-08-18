@@ -11,10 +11,22 @@ $('#neighborhoods').on('dataAdded',function(event,index){
   //This is needed because the table divs are produced dynamically as google finishes their api calls
   //TODO sort by divpointer and rearrange the divs in the preferred sort
   console.log(index)
-  var addedDiv = $('#neighborhoods').children().last()
+  var addedDiv = $('#neighborhoods').children().last().detach()
   console.log(addedDiv)
-  addedDiv.insertAfter("#"+index)
-
+  // addedDiv.insertAfter("#"+index)
+  var placed = false
+  for(var i = 0;i<divPointers.length;i++){
+    if(divPointers[i] > +index){
+      divPointers.splice(i,0,+index)
+      console.log('hi',divPointers[i+1],'#'+divPointers[i+1])
+      console.log(addedDiv)
+      addedDiv.insertBefore('#'+divPointers[i+1])
+      placed = true
+      return
+    } 
+  }
+  divPointers.push(index)
+  $('#neighborhoods').append(addedDiv)
 })
 
 function callWeather(address){//Grab monthly weather data from World Weather Online
@@ -161,9 +173,8 @@ function calcRoute(homeObject,origin,destination) {
         var duration = response.routes[0].legs[0].duration.text
         var distance = response.routes[0].legs[0].distance.text
         if (status == 'OK') {
-          $('#neighborhoods').append('<div id='+homeObject.index+'>'+homeObject.name,homeObject.url,'Median Value: $' + homeObject.zindex+ 'Duration: '+duration + 'Distance: ' + distance + '</div>' )
+          $('#neighborhoods').append('<div id='+homeObject.index+'>'+homeObject.name + homeObject.url+'Median Value: $' + homeObject.zindex+ 'Duration: '+duration + 'Distance: ' + distance + '</div>' )
           $('#neighborhoods').trigger('dataAdded',homeObject.index)
-          divPointers.push(homeObject.index)
           // directionsDisplay.setDirections(response); 
         }
         else{
