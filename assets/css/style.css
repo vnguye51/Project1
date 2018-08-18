@@ -7,9 +7,17 @@
   @media only screen and (max-width: 640px){
 
   }
-  /* body{
-    background-image: url(../images/NinjaLogo.jpg);
-    background-position: top;
-    background-repeat: no-repeat;
+  body{
+    background-image: url(../images/bamboo\ main\ background\ 2.jpg);
+    background-position: center;
+    background-repeat: repeat;
     background-position-y: top;
-  } */
+  }
+.navtitle{
+  background-image: url(../images/jumbotron2.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width:100%;
+  background-color: rgb(67, 180, 67);
+}
+
