@@ -2,6 +2,7 @@
 ///////Grab data from local storage based on link clicked on previous tab
 var jobAddress
 var jobInfo = JSON.parse(sessionStorage.responseArray)
+console.log(jobInfo)
 $('#jobInfo').append(jobInfo.description)
 $('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title)
 var divPointers = []
