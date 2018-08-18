@@ -4,10 +4,18 @@ var jobAddress
 var jobInfo = JSON.parse(sessionStorage.responseArray)
 $('#jobInfo').append(jobInfo.company, jobInfo.title,jobInfo.description,jobInfo.location)
 
-/////ZILLOW API///////////
-var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&state=NY&city=New_York&childtype=neighborhood";
-//Zillow gets region info and the median price of home sales in that area
-//To get rent info we have to access one of zillow's other APIs using the id that this one gives us
+var divPointers = []
+
+$('#neighborhoods').on('dataAdded',function(event,index){
+  //Insert the new div in sorted order
+  //This is needed because the table divs are produced dynamically as google finishes their api calls
+  //TODO sort by divpointer and rearrange the divs in the preferred sort
+  console.log(index)
+  var addedDiv = $('#neighborhoods').children().last()
+  console.log(addedDiv)
+  addedDiv.insertAfter("#"+index)
+
+})
 
 function callWeather(address){//Grab monthly weather data from World Weather Online
   var ZIP = address[2].slice(3,8)
@@ -27,13 +35,15 @@ function callWeather(address){//Grab monthly weather data from World Weather Onl
     })
 }
 
-
-//Zillow API returns an array of regions and their price and neighborhood name
+/////ZILLOW API///////////
+//Zillow gets region info and the median price of home sales in that area
+//To get rent info we have to access one of zillow's other APIs using the id that this one gives us
 function callZillow(address){
   var street = address[0]
   var city = address[1]
   var state = address[2]
   var country = address[3]
+  var businessAddress = street + " " + city + " " + state
   var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&state=" + state + "&city=" + city + "&childtype=neighborhood";
 
   $.ajax({
@@ -65,14 +75,18 @@ function callZillow(address){
         i += 1
       }
       homeCandidates.push(parseElement(data[data.length-1]))
+      
       for(var i = 0; i<homeCandidates.length;i++){
-        $('#neighborhoods').append('<div>'+homeCandidates[i].name,homeCandidates[i].url,'Median Value: $' + homeCandidates[i].zindex+'</div>')
+        homeCandidates[i].index = i
+        console.log(homeCandidates[i].name)
+        var homeAddress = homeCandidates[i].name + " " + city + ' ' + state
+        calcRoute(homeCandidates[i],homeAddress,businessAddress)
       }
 
       // var businessAddress = street + " " + city + " " + state
       // var homeAddress = name + " " + city + ' ' + state
 
-      // calcRoute(homeAddress,businessAddress)
+      
     })
   }
 
@@ -133,7 +147,7 @@ function setMapOnAll(map) {
 
 
 
-function calcRoute(origin,destination) {
+function calcRoute(homeObject,origin,destination) {
     var request = { //Request Info from google
         origin: origin,
         destination: destination,
@@ -146,18 +160,21 @@ function calcRoute(origin,destination) {
     directionsService.route(request, function(response, status) { //Duration
         var duration = response.routes[0].legs[0].duration.text
         var distance = response.routes[0].legs[0].distance.text
-        $('#travelInfo').append(duration,distance)
         if (status == 'OK') {
-          directionsDisplay.setDirections(response); 
+          $('#neighborhoods').append('<div id='+homeObject.index+'>'+homeObject.name,homeObject.url,'Median Value: $' + homeObject.zindex+ 'Duration: '+duration + 'Distance: ' + distance + '</div>' )
+          $('#neighborhoods').trigger('dataAdded',homeObject.index)
+          divPointers.push(homeObject.index)
+          // directionsDisplay.setDirections(response); 
+        }
+        else{
+          $('#neighborhoods').append('<div>Error Calculating Home Info</div>')
         }
     });
 }
 
 function displayRoute(route,status){
-  if (status == 'OK'){
     setMapOnAll(null);
-    directionsDisplay.setDirections(response)
-  }
+    directionsDisplay.setDirections(route)
 }
 // initMap()
 // geocodeAddress(address,geocoder,map)
