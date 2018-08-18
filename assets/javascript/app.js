@@ -73,10 +73,12 @@ $("#search").on("click", function (event){
       responseArray.push(response[i])
    //add row
       var newRow = $('<tr>')
-      newRow.append("<td>" + jobPosted + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
+      newRow.append("<td>" + jobPosted.slice(0,10) + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
       newRow.addClass('jobEntry')
       // newRow.attr('data', response[i])
       $('tbody').append(newRow)
+
+
 
     }
   }) 
