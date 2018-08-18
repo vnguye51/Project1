@@ -50,11 +50,7 @@ $("#search").on("click", function (event){
 
 
 
-    }
-  }) 
-
-
-  $(document).on('click','.jobEntry',function(){ 
+    }$(document).on('click','.jobEntry',function(){ 
  sessionStorage.responseArray = JSON.stringify(responseArray); 
    window.open('detailTab.html', '_blank'); 
 
