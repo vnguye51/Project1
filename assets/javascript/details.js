@@ -2,16 +2,16 @@
 ///////Grab data from local storage based on link clicked on previous tab
 var jobAddress
 var jobInfo = JSON.parse(sessionStorage.responseArray)
-$('#jobInfo').append(jobInfo.company, jobInfo.title,jobInfo.description,jobInfo.location)
-
+$('#jobInfo').append(jobInfo.description)
+$('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title)
 var divPointers = []
 
-$('#neighborhoods').on('dataAdded',function(event,index){
+$('#housingInfo').on('dataAdded',function(event,index){
   //Insert the new div in sorted order
   //This is needed because the table divs are produced dynamically as google finishes their api calls
   //TODO sort by divpointer and rearrange the divs in the preferred sort
   console.log(index)
-  var addedDiv = $('#neighborhoods').children().last().detach()
+  var addedDiv = $('#housingInfo').children().last().detach()
   console.log(addedDiv)
   // addedDiv.insertAfter("#"+index)
   var placed = false
@@ -26,7 +26,7 @@ $('#neighborhoods').on('dataAdded',function(event,index){
     } 
   }
   divPointers.push(index)
-  $('#neighborhoods').append(addedDiv)
+  $('#housingInfo').append(addedDiv)
 })
 
 function callWeather(address){//Grab monthly weather data from World Weather Online
@@ -173,8 +173,13 @@ function calcRoute(homeObject,origin,destination) {
         var duration = response.routes[0].legs[0].duration.text
         var distance = response.routes[0].legs[0].distance.text
         if (status == 'OK') {
-          $('#neighborhoods').append('<div id='+homeObject.index+'>'+homeObject.name + homeObject.url+'Median Value: $' + homeObject.zindex+ 'Duration: '+duration + 'Distance: ' + distance + '</div>' )
-          $('#neighborhoods').trigger('dataAdded',homeObject.index)
+          var newRow = $('<row>').attr('id',homeObject.index)
+          newRow.append($("<div>").html(homeObject.name).addClass('col-md-3'))
+          newRow.append($("<div>").html(homeObject.zindex).addClass('col-md-3'))
+          newRow.append($("<div>").html(distance).addClass('col-md-3'))
+          newRow.append($("<div>").html(duration).addClass('col-md-3'))
+          $('#housingInfo').append(newRow)
+          $('#housingInfo').trigger('dataAdded',homeObject.index)
           // directionsDisplay.setDirections(response); 
         }
         else{
