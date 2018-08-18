@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang='en-us'>
-
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
@@ -10,43 +9,110 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
         crossorigin="anonymous">
-
     <title>Job Ninja!-Detail Tab</title>
-
 </head>
-
 <body>
     <div class="container">
-            <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
+                    <div class="container mx-auto" style="padding-left:25%">
+                        <h1 class="display-3 float-left" style="font-weight:bold;color: rgb(101, 161, 10)">Job Ninja!</h1>
+                        <img class="ml-5" src="assets/images/NinjaLogo.jpg" style="width:130px;" alt="alex as a ninja">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- div below contains two Columns each called col-md-6 -->
+        <div class="row">
+            <!-- first column  -->
+            <div class="col-md-6">
+                <div class="row">
                     <div class="col-md-12">
-                        <div class="jumbotron jumbotron-fluid p-3 mt-3" style="background:skyblue">
-                            <div class="container mx-auto" style="padding-left:25%" >
-                                <h1 class="display-3 float-left">Job Ninja!</h1>
-                                <img src="assets/images/NinjaLogo.jpg" style="width:130px;" alt="alex as a ninja">
+                        <div class="jumbotron jumbotron-fluid p-2">
+                            <div class="container text-center">
+                                <h2 id="company-jobTitle" class="display-5">CrowdTwistLead Data Engineer</h2>   
                             </div>
                         </div>
                     </div>
                 </div>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="jumbotron jumbotron-fluid">
-                        <div class="container text-center">
-                            <h2 class="display-5">Job Title</h2>
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                                <div class="card-header">
+                                        <strong>Job info:</strong> 
+                                </div>
+                                <div class="card-body" id="jobInfo">
+                                </div>
                         </div>
                     </div>
                 </div>
+               
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class ="display-5 text-center">Map Data</h2>
-                    <img class = "mx-auto" src =".\assets\images\Map Placeholder.jpg">
+
+            <!-- second column -->
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id ='map'></div>
+
+                    </div>
+                </div>
+                <!-- second row of second column -->
+                <div class="row my-3">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>Weather:</strong>
+                            </div>
+                            <div class="card-body">
+                                    <p>Weather Data here</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <!-- thrid row on second column for housing info -->
+                    <div class="row my-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Housing in the area:</strong> 
+                                    </div>
+                                    <div id="housingInfo" class="card-body">
+                                        <!-- place holder -->
+                                        <div class="row">
+                                            <div id="housingLocation" class="col-md-3">Location</div>
+                                            <div id="housingMoney" class="col-md-3">$</div>
+                                            <div id="housingDistance" class="col-md-3">distance</div>
+                                            <div id="housingTime" class="col-md-3">time</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="row my-3">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                                <strong>Addition Info:</strong> 
+                                    </div>
+                                    <div class="card-body">
+                                            <p>Restaurant go here</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of second column -->
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"></script>
+    <script type='text/javascript' src='assets/javascript/details.js'></script>
+
+
 </body>

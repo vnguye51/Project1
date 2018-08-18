@@ -18,25 +18,25 @@
     </style>
 </head>
 
-<body class="bg-light">
+<body>
 
     <div class="container">
         <!-- row 1 contains our header and title -->
         <div class="row">
-            <div class="col-md-12">
-                <div class="jumbotron jumbotron-fluid p-3 mt-3" style="background:skyblue">
-                    <div class="container mx-auto" style="padding-left:25%" >
-                        <h1 class="display-3 float-left mr-3">Job Ninja!</h1>
-                        <img src="assets/images/NinjaLogo.jpg" style="width:130px;" alt="alex as a ninja">
+                <div class="col-md-12">
+                    <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
+                        <div class="container mx-auto" style="padding-left:32%">
+                            <h1 class="display-3 float-left" style="font-weight:bold;color: rgb(101, 161, 10)">Job Ninja!</h1>
+                            <img class="ml-5" src="assets/images/AlexNinja2.jpg" style="width:150px;" alt="alex as a ninja">
+                        </div>
                     </div>
                 </div>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <form>
                     <div class="form-group">
-                        <label>Job Search</label>
+                        <label style="font-weight:bold; color: rgb(43, 71, 1)">Job Search</label>
                         <input type="text" class="form-control" id="jsearchInput" placeholder="Enter job title">
                     </div>
                 </form> 
@@ -44,7 +44,7 @@
             <div class="col-md-2">
                 <form>
                     <div class="form-group">
-                        <label>State</label>
+                        <label style="font-weight:bold; color: rgb(43, 71, 1)">State</label>
                         <input type="text" class="form-control" id="stateInput" placeholder="CA">
                     </div>
                   </form>
@@ -53,17 +53,17 @@
                 <form>
                     <label class="invisible" >not</label>
                     <div class="form-group">
-                        <button id="search" type="submit" class="btn btn-primary center-block" > <i class="fas fa-search pr-1"  ></i> Search</button>
+                        <button id="search" type="submit" class="btn btn-success center-block" > <i class="fas fa-search pr-1"  ></i> Search</button>
                     </div>
                 </form>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="card" style="border: skyblue solid">
+                <div class="card" style="border: black">
                     <!-- table goes here -->
                     <table class="table" >
-                        <thead class="card-header" style="background-color:skyblue" >
+                        <thead class="card-header" style="background-color: rgb(170, 214, 48)" >
                             <tr>
                                 <th class="colum1" scope="col" style="font-weight: bold;" >Date Posted</th>
                                 <th scope="col" style="font-weight: bold;">Full or Part Time</th>
@@ -129,3 +129,4 @@
     <!-- Google Maps API needs to be placed below the script that calls it -->
 
 </body>
+</html>
