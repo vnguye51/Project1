@@ -2,7 +2,7 @@
 ///////Grab data from local storage based on link clicked on previous tab
 var jobAddress
 var jobInfo = JSON.parse(sessionStorage.responseArray)
-console.log(jobInfo)
+// console.log(jobInfo)
 $('#jobInfo').append(jobInfo.description)
 $('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title)
 var divPointers = []
@@ -40,12 +40,19 @@ function callWeather(address){//Grab monthly weather data from World Weather Onl
   })
     .then(function (response) {
        var monthArray = response.data.ClimateAverages[0].month
-       var averageTemp = []
+       console.log(response)
+       var averages = []
        for (var i = 0;i<monthArray.length;i++){
          var average = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F))/2) //Tale the average of the min/max of each month
-         averageTemp.push({average: average,month: monthArray[i].name})
+         averages.push({temp: average, month: monthArray[i].name})
        }
-       console.log(averageTemp)
+       var seasonalAverage = []
+       seasonalAverage.push(Math.round((averages[2].temp+averages[3].temp+averages[4].temp)/3))
+       seasonalAverage.push(Math.round((averages[5].temp+averages[6].temp+averages[7].temp)/3))
+       seasonalAverage.push(Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3))
+       seasonalAverage.push(Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3))
+       console.log(averages)
+       console.log(seasonalAverage)
     })
 }
 
@@ -59,35 +66,38 @@ function callZillow(address){
   var country = address[3]
   var businessAddress = street + " " + city + " " + state
   var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&state=" + state + "&city=" + city + "&childtype=neighborhood";
-
+  console.log(queryURL)
   $.ajax({
     url: queryURL,
     method: "GET",
   })
     .then(function (response) {
-      var json = xmlToJson(response)
-      var data = json["RegionChildren:regionchildren"].response.list.region
+      console.log(response)
+      // var json = xmlToJson(response)
+      // console.log(json)
+      // var data = json["RegionChildren:regionchildren"].response.list.region
+      data = parseZillowXML(response)
 
       sortArrBy(data,'price')
 
-      function parseElement(element){//Grab data of interest from array
-        return {
-          name: element.name['#text'],
-          url: element.url['#text'],
-          zindex: element.zindex['#text']
-        }
-      }
+      // function parseElement(element){//Grab data of interest from array
+      //   return {
+      //     name: element.name['#text'],
+      //     // url: element.url['#text'],
+      //     zindex: element.zindex['#text']
+      //   }
+      // }
 
       var homeCandidates = []
-      homeCandidates.push(parseElement(data[0]))
+      homeCandidates.push(data[0])
       console.log(data)
       var d = (data.length-2)/4.0//TODO: Let the 4 be a user input variable later on and move the data array to the global scope
       var i = 1
       while(i*d<data.length-2){//
-        homeCandidates.push(parseElement(data[Math.round(i*d - 1)]))
+        homeCandidates.push(data[Math.round(i*d - 1)])
         i += 1
       }
-      homeCandidates.push(parseElement(data[data.length-1]))
+      homeCandidates.push(data[data.length-1])
       
       for(var i = 0; i<homeCandidates.length;i++){
         homeCandidates[i].index = i
@@ -107,16 +117,45 @@ function callZillow(address){
 // Google geocoding is probably redundant with this 
 // /THIS AJAX CALL ALSO RETURNS AN IMAGE OF THE COMPANY MIGHT BE USEFUL TO ADD
 query = jobInfo.location + " " + jobInfo.company
-queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"
-$.ajax({
-  url: queryURL,
-  method: "GET",
-})
-  .then(function (response) {
-    var address = parseGoogleAddress(response.results[0].formatted_address)
-    callZillow(address)//Call zillow to find houses near this area when the google call is done
-    callWeather(address)
+function callGoogle(query,secondPass){
+  
+  queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"
+  console.log(queryURL)
+  $.ajax({
+    url: queryURL,
+    method: "GET",
   })
+    .then(function (response) {
+      console.log(response)
+      if(response.results[0]){
+        var address = parseGoogleAddress(response.results[0].formatted_address)
+      }
+      else if (secondPass == false){
+        callGoogle(jobInfo.location,true)
+      }
+      else{
+        return 'Error: No homes matched'
+      }
+      callZillow(address)//Call zillow to find houses near this area when the google call is done
+      callWeather(address)//Determine weather in the area
+    })
+}
+
+function parseGoogleAddress(address){
+  //1234 street, San Francisco, CA 94523, USA
+  //Due to some places not providing a street address both cases must be handled
+  formatted = address.split(', ')
+  if (formatted.length == 4){
+    return formatted
+  }
+  if (formatted.length == 3){
+    return ['',formatted[0],formatted[1],formatted[2]]
+  }
+}
+
+callGoogle(query)
+
+
 
 ///////GOOGLE MAPS EMBEDDED API//////////////
 var map;
@@ -170,6 +209,10 @@ function calcRoute(homeObject,origin,destination) {
         }
       }
     directionsService.route(request, function(response, status) { //Duration
+        if (!response){
+          console.log(request,status)
+          return
+        }
         var duration = response.routes[0].legs[0].duration.text
         var distance = response.routes[0].legs[0].distance.text
         if (status == 'OK') {
@@ -238,17 +281,15 @@ function xmlToJson(xml) {//Obtained from davidwalsh.name/convert-xml-json
 	return obj;
 };
 
-function parseGoogleAddress(address){
-  return address.split(', ')
-}
+
 
 //This function is used in the Zillow API call to sort neighborhood candidates
-function sortArrBy(arr,sort,jobLocation){//sort is a string that determines what to sort by
+function sortArrBy(arr,sort){//sort is a string that determines what to sort by
   if (sort == 'price'){
   
     arr.sort(function(a,b){
       if(b.zindex && a.zindex){ //Check if both regions have a pricing, if not put it at the bottom
-      return +a.zindex['#text'] - +b.zindex['#text']
+      return a.zindex- b.zindex
       }
       else if(a.zindex){return -1}
       else{return 1}
@@ -268,3 +309,18 @@ function sortArrBy(arr,sort,jobLocation){//sort is a string that determines what
 //     })
 //   }
 // }
+
+function parseZillowXML(xml){
+  var data = xml.activeElement.children[2].children[2]
+  var count = data.children.length
+  var neighborHoodArray = []
+  for(var i = 1;i<count;i++){
+    var neighborhood = {}
+      neighborhood.name = data.children[i].children[1].innerHTML
+      if (data.children[i].children[2].nodeName == ('zindex')){
+        neighborhood.zindex = +data.children[i].children[2].innerHTML
+      }
+    neighborHoodArray.push(neighborhood)
+  }
+  return neighborHoodArray
+}

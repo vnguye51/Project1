@@ -10,4 +10,20 @@
         * Currently calculations are done after the call is done
 
     * Weather API the average daily rainfall can be taken? We can possibly have different icons for different rainfall amounts
-    
+
+*Limitations: 
+    If over 10 queries are called per second google returns an errors 
+        *possibly set timeout on the query calls and create a queue?
+
+*Bugs:
+    * There are lot of errors to catch while parsing the city string: 
+    * XML Document needs to be manually moved the function isn't able to correctly parse the XML when there is an empty zindex
+    * The google query should be callbacked if there is no matching results but without the company
+    * parse the address based on that
+    * try switching to ATTOM Data for real estate data
+
+* Set the average daily rainfall breakpoints as 
+    * below 2: sunny  
+    * 2-3: light rain
+    * 3-4: moderate
+    * above 4: heavy rain
