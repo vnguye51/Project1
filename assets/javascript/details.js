@@ -46,40 +46,25 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
     error: function(){$('#weather').empty(); $('#weather').append($('<div>').html('No weather data found'))}
   })
     .then(function (response) {
-      console.log(response)
-      var monthArray = response.data.ClimateAverages[0].month;
-      var averages = [];
-      for (var i = 0; i < monthArray.length; i++) {
-        var temp = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F)) / 2); //Tale the average of the min/max of each month
-        averages.push({ temp: temp, month: monthArray[i].name, rain: +monthArray[i].avgDailyRainfall });
-      };
+       var monthArray = response.data.ClimateAverages[0].month
+       var averages = []
+       for (var i = 0;i<monthArray.length;i++){
+         var temp = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F))/2) //Tale the average of the min/max of each month
+         averages.push({temp: temp, month: monthArray[i].name, rain: +monthArray[i].avgDailyRainfall})
+       }
 
-      var seasonalAverage = [];
-      seasonalAverage.push({ name: 'Spring', temp: Math.round((averages[2].temp + averages[3].temp + averages[4].temp) / 3), rain: Math.round((averages[2].rain + averages[3].rain + averages[4].rain) / 3 * 100) / 100 });
-      seasonalAverage.push({ name: 'Summer', temp: Math.round((averages[5].temp + averages[6].temp + averages[7].temp) / 3), rain: Math.round((averages[5].rain + averages[6].rain + averages[7].rain) / 3 * 100) / 100 });
-      seasonalAverage.push({ name: 'Fall', temp: Math.round((averages[8].temp + averages[9].temp + averages[10].temp) / 3), rain: Math.round((averages[8].rain + averages[9].rain + averages[10].rain) / 3 * 100) / 100 });
-      seasonalAverage.push({ name: 'Winter', temp: Math.round((averages[11].temp + averages[0].temp + averages[1].temp) / 3), rain: Math.round((averages[11].rain + averages[0].rain + averages[1].rain) / 3 * 100) / 100 });
+       var seasonalAverage = []
+       seasonalAverage.push({name: 'Spring', temp: Math.round((averages[2].temp+averages[3].temp+averages[4].temp)/3), rain: Math.round((averages[2].rain+averages[3].rain+averages[4].rain)/3*100)/100})
+       seasonalAverage.push({name: 'Summer',temp: Math.round((averages[5].temp+averages[6].temp+averages[7].temp)/3), rain: Math.round((averages[5].rain+averages[6].rain+averages[7].rain)/3*100)/100})
+       seasonalAverage.push({name: 'Fall', temp: Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3), rain: Math.round((averages[8].rain+averages[9].rain+averages[10].rain)/3*100)/100})
+       seasonalAverage.push({name: 'Winter', temp: Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3), rain: Math.round((averages[11].rain+averages[0].rain+averages[1].rain)/3*100)/100})
+       for(var i = 0; i<seasonalAverage.length; i++){
+        var seasonCol = $("<div>").addClass("col-md-3").append(seasonalAverage[i].name + seasonalAverage[i].temp);
 
-      //Add icons based on precipitation and temperature
-      //If precipitation > 3 and temp is < 40; snow
-      for (var i = 0; i < seasonalAverage.length; i++) {
-        if (seasonalAverage[i].rain > 3 && seasonalAverage[i].temp <= 40) {
-          seasonalAverage[i].icon = 'snow';
-        }
-        else if (seasonalAverage[i].rain > 4) {
-          seasonalAverage[i].icon = 'heavyrain';
-        }
-        else if (seasonalAverage[i].rain > 3) {
-          seasonalAverage[i].icon = 'moderaterain';
-        }
-        else if (seasonalAverage[i].rain > 2) {
-          seasonalAverage[i].icon = 'lightrain';
-        }
-        else {
-          seasonalAverage[i].icon = 'sunny';
-        }
-        $('#weather').append($('<div>').html(seasonalAverage[i].icon + seasonalAverage[i].name + seasonalAverage[i].temp));
-      }
+         $('#weather').append(seasonCol)
+       }
+
+       
     })
 }
 
