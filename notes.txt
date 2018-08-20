@@ -1,0 +1,13 @@
+* Things to add:
+    * Display several houses
+        * Add a filter function(cost?,duration?,distance?)
+            * API call to every possible region will be too slow and zillow does not preorganize data
+            * Possibly calculate the distance based on lat/long and sort the zillow returned list that way
+            * Sorting by the square distance is cheaper than taking the square root
+    * Time needs to be during traffic
+        * Have a toggle button to change what time you want it to be (morning rush/evening rush)
+    * Calculate the routes for all houses and display them on the list
+        * Currently calculations are done after the call is done
+
+    * Weather API the average daily rainfall can be taken? We can possibly have different icons for different rainfall amounts
+    
