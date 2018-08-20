@@ -22,6 +22,8 @@ $("#search").on("click", function (event){
   
   var jobSearch = $("#jsearchInput").val().trim() 
   var jobState = $("#stateInput").val().trim() 
+  // jobSearch = 'Python'
+  // jobState = 'New+York'
   console.log(jobSearch,jobState) 
 
   $.ajax({
@@ -45,15 +47,23 @@ $("#search").on("click", function (event){
       var newRow = $('<tr>')
       newRow.append("<td>" + jobPosted.slice(0,10) + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
       newRow.addClass('jobEntry')
-      // newRow.attr('data', response[i])
+      newRow.attr('data', i)
       $('tbody').append(newRow)
 
 
 
-    }$(document).on('click','.jobEntry',function(){ 
- sessionStorage.responseArray = JSON.stringify(responseArray); 
-   window.open('detailTab.html', '_blank'); 
 
+    }
+  }) 
+//     }$(document).on('click','.jobEntry',function(){ 
+//  sessionStorage.responseArray = JSON.stringify(responseArray); 
+//    window.open('detailTab.html', '_blank'); 
+
+//hi
+
+  $(document).on('click','.jobEntry',function(){ 
+   sessionStorage.responseArray = JSON.stringify(responseArray[+$(this).attr('data')]); 
+   window.open('detailTab.html', '_blank');
   }) 
 })
   
