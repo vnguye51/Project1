@@ -1,12 +1,17 @@
+// this function is to insert commas on the housing amounts
+function numberWithCommas(amount){
+  return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 // console.log(JSON.parse(sessionStorage.responseArray))
 ///////Grab data from local storage based on link clicked on previous tab
 var jobAddress
 var jobInfo = JSON.parse(sessionStorage.responseArray)
-console.log(jobInfo)
-$('#jobInfo').append(jobInfo.description)
-$('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title)
-var divPointers = []
 
+console.log(jobInfo)
+//  added animation to entry - IMR
+$('#jobInfo').append(jobInfo.description).addClass("animated bounceInUp");
+$('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title);
+var divPointers = []
 $(document).on('click','.housing',function(event){
   setMapOnAll(null)
   directionsDisplay.setDirections($(this).data())
@@ -17,6 +22,8 @@ $('#housingInfo').on('dataAdded',function(event,index){
   //This is needed because the table divs are produced dynamically as google finishes their api calls
   //TODO sort by divpointer and rearrange the divs in the preferred sort
   var addedDiv = $('#housingInfo').children().last().detach()
+  // added animation to loan onto page - IMR
+  addedDiv.addClass("animated bounceInUp")
   // addedDiv.insertAfter("#"+index)
   var placed = false
   for(var i = 0;i<divPointers.length;i++){

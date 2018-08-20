@@ -2,10 +2,22 @@
 /* Google Maps API */
 #map {
     width: 100%;
-    height: 400px;
+    height: 300px;
   }
-  @media only screen and (max-width: 640px){
-
+  /* 411 includes all iphones and pixels  */
+  @media only screen and (max-width: 411px){
+    .navText{
+      font-size: 36px;
+      color: black !important;
+      
+    }
+    .logoStyle{
+      width: 80px;
+    }
+    .toBeHiddenMobile{
+      display: none;
+    }
+    
   }
   body{
     background-image: url(../images/bamboo\ main\ background\ 2.jpg);
@@ -13,20 +25,29 @@
     background-repeat: repeat;
     background-position-y: top;
   }
+  .logoStyle{
+    width:150px;
+  }
+  .navText{
+    font-weight:bold;
+    color: rgb(101, 161, 10);
+    position: relative; 
+    left: -10%;
+  }
 .navtitle{
   background-image: url(../images/jumbotron2.jpg);
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   width:100%;
-  background-color: rgb(67, 180, 67);
+ 
 }
 
 .loader {
-  border: 16px solid #f3f3f3;
+  border: 8px solid darkmagenta;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
+  border-top: 8px solid #3498db;
+  width: 40px;
+  height: 40px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
 }
@@ -41,3 +62,36 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/* changes mouse to pointer to emphasis link and functionality */
+#jobList:hover{
+  cursor: pointer;
+}
+#housingInfo:hover{
+  cursor: pointer;
+}
+#company-jobTitle {
+  /* -webkit-animation-duration: 3s; */
+  -webkit-animation-delay: 2s;
+  -webkit-animation-iteration-count: 2;
+}
+.delay-HalfSecond{
+  -webkit-animation-delay: .5s;
+}
+.delay-1Second{
+  -webkit-animation-delay: 1s;
+}
+.delay-1AndHalfSeconds{
+  -webkit-animation-delay: 1.5s;
+}
+.delay-2Seconds{
+  -webkit-animation-delay: 2s;
+}
+.introDelay {
+  /* -webkit-animation-duration: 3s; */
+  -webkit-animation-delay: 1s;
+  -webkit-animation-iteration-count: 2;
+}
+.bg-Green{
+  background-color: rgb(170, 214, 48);
+}
+
