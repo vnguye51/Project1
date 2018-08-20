@@ -96,9 +96,15 @@ function callZillow(address) {
   $.ajax({
     url: queryURL,
     method: "GET",
+    error: function(){$('#houseLoad').remove();$('#housingInfo').append("Error connecting to Zillow database")}
   })
     .then(function (response) {
       data = parseZillowXML(response);
+      if(!data){
+        $('#houseLoad').remove();
+        $('#housingInfo').append('Housing Info Available for Major US Cities Only')
+        return
+      }
       sortArrBy(data, 'price');
       var homeCandidates = [];
       homeCandidates.push(data[0]);
@@ -109,7 +115,12 @@ function callZillow(address) {
         i += 1;
       }
       homeCandidates.push(data[data.length - 1]);
-
+      console.log(homeCandidates)
+      if (!homeCandidates[0]){
+        $('#houseLoad').remove();
+        $('#housingInfo').append('Housing Info Available for Major US Cities Only')
+        return
+      }
       for (var i = 0; i < homeCandidates.length; i++) {
         homeCandidates[i].index = i;
         var homeAddress = homeCandidates[i].name + " " + city + ' ' + state;
@@ -127,6 +138,7 @@ function callGoogle(query, secondPass) {
   $.ajax({
     url: queryURL,
     method: "GET",
+    error: function(){console.log('Error connecting to Google Places')}
   })
     .then(function (response) {
       if (response.results[0]) {
@@ -152,8 +164,14 @@ function callRestaurants(query) {
     headers: {
       'Authorization': 'Bearer 39gMve0deRFdd0qGL2vFqZy8aAHYc69RlyFPR631QYuffuWibybqZlVEBs8Lxa_J1bPqAxtn1d3vBgPYD6wGmICH1mMQ3W3mI4aqQCLZtxVy4B4queBgqXadlBZ6W3Yx',
     },
+    error: function(){ $('#restaurants').empty(); $('#restaurants').append('Error connecting to Yelp database')}
   })
     .then(function (response) {
+      if (response.total == 0){
+        $('#restaurants').empty()
+        $('#restaurants').append("NO RESTAURANTS FOUND")
+        return
+      }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
         //TODO place a marker at each lat and lon
         var newRestaurant = $('<div>');
@@ -171,16 +189,6 @@ function callRestaurants(query) {
     })
 }
 
-function callImage(targetDiv, ID) {
-  queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=" + ID + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo";
-  console.log(queryURL);
-  $.ajax({
-    url: queryURL,
-    method: "GET",
-  })
-    .then(function (response) {
-    })
-}
 
 function parseGoogleAddress(address) {
   //1234 street, San Francisco, CA 94523, USA
@@ -275,7 +283,7 @@ function calcRoute(homeObject, origin, destination) {
       }
     }
     else {
-      $('#neighborhoods').append('<div>Error Calculating Home Info</div>');
+      $('#housingInfo').append('<div>Error Calculating Home Info</div>');
     }
   });
 }
@@ -314,6 +322,9 @@ function sortArrBy(arr, sort) {//sort is a string that determines what to sort b
 function parseZillowXML(xml) {
   ///Move through the XML object. Only works in firefox.
   consolexml = xml;
+  if (xml.activeElement.children[2] == undefined){
+    return
+  }
   var data = xml.activeElement.children[2].children[2];
   var count = data.children.length;
   var neighborHoodArray = [];
