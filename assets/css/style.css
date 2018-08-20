@@ -19,6 +19,14 @@
     }
     
   }
+  #weather{
+    background-image: url(../images/bgWeather2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-size: cover;
+  }
+  
   body{
     background-image: url(../images/bamboo\ main\ background\ 2.jpg);
     background-position: center;
@@ -89,7 +97,7 @@
 .introDelay {
   /* -webkit-animation-duration: 3s; */
   -webkit-animation-delay: 1s;
-  -webkit-animation-iteration-count: 2;
+  -webkit-animation-iteration-count: 1;
 }
 .bg-Green{
   background-color: rgb(170, 214, 48);

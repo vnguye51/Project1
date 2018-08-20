@@ -62,22 +62,9 @@ function callWeather(address){//Grab monthly weather data from World Weather Onl
        seasonalAverage.push({name: 'Fall', temp: Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3), rain: Math.round((averages[8].rain+averages[9].rain+averages[10].rain)/3*100)/100})
        seasonalAverage.push({name: 'Winter', temp: Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3), rain: Math.round((averages[11].rain+averages[0].rain+averages[1].rain)/3*100)/100})
        for(var i = 0; i<seasonalAverage.length; i++){
-         if(seasonalAverage[i].rain > 3 && seasonalAverage[i].temp <= 40){
-           seasonalAverage[i].icon = 'snow'
-         }
-         else if(seasonalAverage[i].rain > 4){
-          seasonalAverage[i].icon = 'heavyrain'
-         }
-         else if(seasonalAverage[i].rain > 3){
-           seasonalAverage[i].icon = 'moderaterain'
-         }
-         else if (seasonalAverage[i].rain > 2){
-           seasonalAverage[i].icon = 'lightrain'
-         }
-         else {
-           seasonalAverage[i].icon = 'sunny'
-         }
-         $('#weather').append($('<div>').html(seasonalAverage[i].icon + seasonalAverage[i].name + seasonalAverage[i].temp))
+        var seasonCol = $("<div>").addClass("col-md-3").append(seasonalAverage[i].name + seasonalAverage[i].temp);
+
+         $('#weather').append(seasonCol)
        }
 
        
