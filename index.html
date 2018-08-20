@@ -4,10 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ"
-    crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- for icons in search btn -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- for animation library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!-- our own styling -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     
     <title>Job Ninja! - main page</title>
@@ -25,8 +27,8 @@
                 <div class="col-md-12">
                     <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
                         <div class="container mx-auto" style="padding-left:32%">
-                            <h1 class="display-3 float-left" style="font-weight:bold;color: rgb(101, 161, 10)">Job Ninja!</h1>
-                            <img class="ml-5" src="assets/images/AlexNinja2.jpg" style="width:150px;" alt="alex as a ninja">
+                            <p class="display-3 float-left navText animated bounce introDelay">Job Ninja!</p>
+                            <img class="logoStyle " src="assets/images/AlexNinja2.jpg"  alt="alex as a ninja">
                         </div>
                     </div>
                 </div>
@@ -36,7 +38,7 @@
                 <form>
                     <div class="form-group">
                         <label style="font-weight:bold; color: rgb(43, 71, 1)">Job Search</label>
-                        <input type="text" class="form-control" id="jsearchInput" placeholder="Enter job title">
+                        <input type="text" class="form-control animated jello delay-HalfSecond" id="jsearchInput" placeholder="Enter job title">
                     </div>
                 </form> 
             </div>
@@ -52,7 +54,7 @@
                 <form>
                     <label class="invisible" >not</label>
                     <div class="form-group">
-                        <button id="search" type="submit" class="btn btn-success center-block" > <i class="fas fa-search pr-1"  ></i> Search</button>
+                        <button id="search" type="submit" class="btn btn-success center-block animated bounceIn delay-1AndHalfSeconds" > <i class="fas fa-search pr-1"  ></i> Search</button>
                     </div>
                 </form>
             </div>
@@ -62,23 +64,23 @@
                 <div class="card" style="border: black">
                     <!-- table goes here -->
                     <table class="table" >
-                        <thead class="card-header" style="background-color: rgb(170, 214, 48)" >
+                        <thead class="card-header bg-Green" >
                             <a href='#'><tr>
-                                <th class="colum1" scope="col" style="font-weight: bold;" >Date Posted</th>
-                                <th scope="col" style="font-weight: bold;">Full or Part Time</th>
+                                <th  class="toBeHiddenMobile" scope="col" style="font-weight: bold;" >Date Posted</th>
+                                <th scope="col" style="font-weight: bold;">Full or PT</th>
                                 <th scope="col" style="font-weight: bold;">Position Title</th>
                                 <th scope="col" style="font-weight: bold;">Location</th>
-                                <th scope="col" style="font-weight: bold;">Company URL</th>
+                                <th class="toBeHiddenMobile" scope="col" style="font-weight: bold;">Company Name</th>
                             </tr></a>
                         </thead>
                         <tbody id="jobList">
                             <tr>
                                 <!-- id all column 1 items -->
-                                <td class="column1" >8/15/2018</td>
+                                <td class="toBeHiddenMobile" >8/15/2018</td>
                                 <td>FT</td>
                                 <td>Programmer</td>
                                 <td>New York,NY</td>
-                                <td class="column5">www.Youwannaworkhere.com</td>
+                                <td class="toBeHiddenMobile"> www.Youwannaworkhere.com</td>
 
                             </tr>
                         </tbody>
