@@ -24,11 +24,10 @@ $("#search").on("click", function (event){
     method: "GET"
   }).then(function (response) {
     console.log("https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description="+jobSearch+"&location="+jobState)
-    console.log(response)
     responseArray = []
     //grab data from ajax respone and you can see it in console
     //loop through resonse so dont have to type twice
-    console.log('asdf');lll
+    console.log('asdf')
     for (var i = 0; i < response.length; i++) {
       jobTitle = response[i]['title']
       jobLocation = response[i]["location"]
