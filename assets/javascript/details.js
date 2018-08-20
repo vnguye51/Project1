@@ -416,7 +416,9 @@ function sortArrBy(arr,sort){//sort is a string that determines what to sort by
 // }
 
 function parseZillowXML(xml){
+  console.log(xml)
   var data = xml.activeElement.children[2].children[2]
+  console.log(data)
   var count = data.children.length
   var neighborHoodArray = []
   for(var i = 1;i<count;i++){
