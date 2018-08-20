@@ -2,6 +2,7 @@
 ///////Grab data from local storage based on link clicked on previous tab
 var jobAddress
 var jobInfo = JSON.parse(sessionStorage.responseArray)
+var initialLoad = true
 // console.log(jobInfo)
 $('#jobInfo').append(jobInfo.description)
 $('#company-jobTitle').append(jobInfo.company + ': ' + jobInfo.title)
@@ -40,19 +41,37 @@ function callWeather(address){//Grab monthly weather data from World Weather Onl
   })
     .then(function (response) {
        var monthArray = response.data.ClimateAverages[0].month
-       console.log(response)
        var averages = []
        for (var i = 0;i<monthArray.length;i++){
-         var average = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F))/2) //Tale the average of the min/max of each month
-         averages.push({temp: average, month: monthArray[i].name})
+         var temp = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F))/2) //Tale the average of the min/max of each month
+         averages.push({temp: temp, month: monthArray[i].name, rain: +monthArray[i].avgDailyRainfall})
        }
+
        var seasonalAverage = []
-       seasonalAverage.push(Math.round((averages[2].temp+averages[3].temp+averages[4].temp)/3))
-       seasonalAverage.push(Math.round((averages[5].temp+averages[6].temp+averages[7].temp)/3))
-       seasonalAverage.push(Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3))
-       seasonalAverage.push(Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3))
-       console.log(averages)
-       console.log(seasonalAverage)
+       seasonalAverage.push({name: 'Spring', temp: Math.round((averages[2].temp+averages[3].temp+averages[4].temp)/3), rain: Math.round((averages[2].rain+averages[3].rain+averages[4].rain)/3*100)/100})
+       seasonalAverage.push({name: 'Summer',temp: Math.round((averages[5].temp+averages[6].temp+averages[7].temp)/3), rain: Math.round((averages[5].rain+averages[6].rain+averages[7].rain)/3*100)/100})
+       seasonalAverage.push({name: 'Fall', temp: Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3), rain: Math.round((averages[8].rain+averages[9].rain+averages[10].rain)/3*100)/100})
+       seasonalAverage.push({name: 'Winter', temp: Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3), rain: Math.round((averages[11].rain+averages[0].rain+averages[1].rain)/3*100)/100})
+       for(var i = 0; i<seasonalAverage.length; i++){
+         if(seasonalAverage[i].rain > 3 && seasonalAverage[i].temp <= 40){
+           seasonalAverage[i].icon = 'snow'
+         }
+         else if(seasonalAverage[i].rain > 4){
+          seasonalAverage[i].icon = 'heavyrain'
+         }
+         else if(seasonalAverage[i].rain > 3){
+           seasonalAverage[i].icon = 'moderaterain'
+         }
+         else if (seasonalAverage[i].rain > 2){
+           seasonalAverage[i].icon = 'lightrain'
+         }
+         else {
+           seasonalAverage[i].icon = 'sunny'
+         }
+         $('#weather').append($('<div>').html(seasonalAverage[i].icon + seasonalAverage[i].name + seasonalAverage[i].temp))
+       }
+
+       
     })
 }
 
@@ -120,13 +139,13 @@ query = jobInfo.location + " " + jobInfo.company
 function callGoogle(query,secondPass){
   
   queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"
-  console.log(queryURL)
+  // console.log(queryURL)
   $.ajax({
     url: queryURL,
     method: "GET",
   })
     .then(function (response) {
-      console.log(response)
+      // console.log(response)
       if(response.results[0]){
         var address = parseGoogleAddress(response.results[0].formatted_address)
       }
@@ -138,7 +157,71 @@ function callGoogle(query,secondPass){
       }
       callZillow(address)//Call zillow to find houses near this area when the google call is done
       callWeather(address)//Determine weather in the area
+      callRestaurants(address)
     })
+}
+// function callRestaurants(query){
+//   queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+near+" + query + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"
+//   console.log(queryURL)
+//   $.ajax({
+//     url: queryURL,
+//     method: "GET",
+//   })
+//     .then(function(response){
+//       console.log(response)
+//       for(var i = 0; i<response.results.length && i<5;i++){
+//         //TODO place a marker at each lat and lon
+//         var newRestaurant = $('<div>')
+//         newRestaurant.append(response.results[i].name)
+//         newRestaurant.append(response.results[i].price_level)
+//         newRestaurant.append(response.results[i].rating)
+//         newRestaurant.attr('id','restaurant'+i)
+//         callImage($('#restaurant'+i),response.results[i].photos[0].photo_reference)
+//         $('#restaurants').append(newRestaurant)
+//       }
+//     })
+// }
+function callRestaurants(query){
+    queryURL = "https://cors-anywhere.herokuapp.com/" + "https://api.yelp.com/v3/businesses/search?&term=restaurants&location=" + query + "&sort_by=review_count&radius=1000"
+    console.log(queryURL)
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+      headers: {
+        'Authorization': 'Bearer 39gMve0deRFdd0qGL2vFqZy8aAHYc69RlyFPR631QYuffuWibybqZlVEBs8Lxa_J1bPqAxtn1d3vBgPYD6wGmICH1mMQ3W3mI4aqQCLZtxVy4B4queBgqXadlBZ6W3Yx',
+      },
+    })
+      .then(function(response){
+        console.log(response)
+        for(var i = 0; i<response.businesses.length && i<3;i++){
+          //TODO place a marker at each lat and lon
+          var newRestaurant = $('<div>')
+          var newImage = $('<img>').attr('src',response.businesses[i].image_url).addClass('foodImage')
+
+          newRestaurant.append(newImage)
+          newRestaurant.append(response.businesses[i].alias)
+          newRestaurant.append(response.businesses[i].price)
+          newRestaurant.append(response.businesses[i].rating)
+
+          newRestaurant.attr('id','restaurant'+i)
+
+          $('#restaurants').append(newRestaurant)
+        }
+      })
+  }
+
+
+function callImage(targetDiv,ID){
+  queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&maxheight=400&photoreference=" + ID + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"
+  console.log(queryURL)
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  })
+    .then(function(response){
+      console.log(response)
+    })
+  // targetDiv.append($('<img>').attr('src',''))
 }
 
 function parseGoogleAddress(address){
@@ -165,6 +248,7 @@ var address = jobInfo.location + " " + jobInfo.company
 var directionsService = new google.maps.DirectionsService();
 var directionsDisplay = new google.maps.DirectionsRenderer();
 function initMap() {
+
     var chicago = new google.maps.LatLng(41.850033, -87.6500523);//Chicago is just a placeholder that the map defaults to if no geocode address is found
     var mapOptions = {
       zoom:14,
@@ -173,6 +257,8 @@ function initMap() {
     geocoder = new google.maps.Geocoder()
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
     directionsDisplay.setMap(map);
+    var trafficLayer = new google.maps.TrafficLayer();
+    trafficLayer.setMap(map);
   }
 
 function geocodeAddress(address, geocoder, resultsMap) {
@@ -181,9 +267,14 @@ function geocodeAddress(address, geocoder, resultsMap) {
       resultsMap.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
         map: resultsMap,
-        position: results[0].geometry.location
+        position: results[0].geometry.location,
+        zIndex: 100,
       });
       markers.push(marker)
+      var infowindow = new google.maps.InfoWindow({
+        content: jobInfo.company,
+      })
+    infowindow.open(resultsMap,marker)
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
     }
@@ -209,13 +300,22 @@ function calcRoute(homeObject,origin,destination) {
         }
       }
     directionsService.route(request, function(response, status) { //Duration
-        if (!response){
-          console.log(request,status)
-          return
-        }
-        var duration = response.routes[0].legs[0].duration.text
-        var distance = response.routes[0].legs[0].distance.text
+        // if (!response){
+        //   console.log(request,status)
+        //   return
+        // }
+        console.log(response)
         if (status == 'OK') {
+          var duration = response.routes[0].legs[0].duration.text
+          var distance = response.routes[0].legs[0].distance.text
+          // var marker = new google.maps.Marker({
+          //   map: resultsMap,
+          //   position: results[0].geometry.location,
+          //   zIndex: 100,
+          // });
+
+
+
           var newRow = $('<div>').attr('id',homeObject.index).addClass('row').addClass(
             'housing')
           newRow.data(response)
@@ -225,6 +325,10 @@ function calcRoute(homeObject,origin,destination) {
           newRow.append($("<div>").html(duration).addClass('col-md-3'))
           $('#housingInfo').append(newRow)
           $('#housingInfo').trigger('dataAdded',homeObject.index)
+        if (initialLoad == true){
+          initialLoad = false
+          $('#houseLoad').remove()
+        }
           // directionsDisplay.setDirections(response); 
         }
         else{
@@ -236,6 +340,7 @@ function calcRoute(homeObject,origin,destination) {
 function displayRoute(route,status){
     setMapOnAll(null);
     directionsDisplay.setDirections(route)
+    directionsDisplay.infoWindow.open()
 }
 initMap()
 geocodeAddress(address,geocoder,map)
@@ -324,3 +429,4 @@ function parseZillowXML(xml){
   }
   return neighborHoodArray
 }
+
