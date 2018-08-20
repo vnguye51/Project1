@@ -1,16 +1,9 @@
 
 var map;
 var location;
-
 var initMap
-
 var jobTitle
 var responseArray =[]
-
-
-
-
-
 var jobTitle;
 var jobLocation;
 var jobType;
@@ -45,7 +38,7 @@ $("#search").on("click", function (event){
       responseArray.push(response[i])
    //add row
       var newRow = $('<tr>')
-      newRow.append("<td>" + jobPosted.slice(0,10) + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td>" + jobCompany + "</td>")
+      newRow.append("<td class='toBeHiddenMobile'>"  + jobPosted.slice(0,10) + "</td>","<td>" + jobType + "</td>","<td>" + jobTitle + "</td>", '<td>' + jobLocation + '</td>',"<td class='toBeHiddenMobile'>" + jobCompany + "</td>")
       newRow.addClass('jobEntry')
       newRow.attr('data', i)
       $('tbody').append(newRow)
