@@ -43,6 +43,7 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
   $.ajax({
     url: queryURL,
     method: "GET",
+    error: function(){$('#weather').empty(); $('#weather').append($('<div>').html('No weather data found'))}
   })
     .then(function (response) {
       console.log(response)
