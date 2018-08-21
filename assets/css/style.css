@@ -38,6 +38,7 @@
   }
   .navText{
     font-weight:bold;
+    text-shadow: 2px 2px 5px black;
     color: rgb(101, 161, 10);
     position: relative; 
     left: -10%;
@@ -49,7 +50,9 @@
   width:100%;
  
 }
-
+.form-group{
+  font-size: 150%
+}
 .loader {
   border: 8px solid darkmagenta;
   border-radius: 50%;
