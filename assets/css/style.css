@@ -77,14 +77,9 @@
 .delay-1AndHalfSeconds{
   -webkit-animation-delay: 1.5s;
 }
-.introDelay {
-  -webkit-animation-delay: 1s;
-  -webkit-animation-iteration-count: 1;
-}
 .bg-Green{
   background-color: rgb(170, 214, 48);
 }
-
 /* 411 includes all iphones and pixels  */
 @media only screen and (max-width: 411px){
   .navText{
