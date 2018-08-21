@@ -43,7 +43,7 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
   $.ajax({
     url: queryURL,
     method: "GET",
-    error: function(){$('#weather').empty(); $('#weather').append($('<div>').html('No weather data found'))}
+    error: function(){$('#houseLoad2').remove();$('#weather').empty(); $('#weather').append($('<div>').html('No weather data found'))}
   })
     .then(function (response) {
        var monthArray = response.data.ClimateAverages[0].month
@@ -52,14 +52,17 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
          var temp = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F))/2) //Tale the average of the min/max of each month
          averages.push({temp: temp, month: monthArray[i].name, rain: +monthArray[i].avgDailyRainfall})
        }
-
+       $('#houseLoad2').remove()
        var seasonalAverage = []
        seasonalAverage.push({name: 'Spring', temp: Math.round((averages[2].temp+averages[3].temp+averages[4].temp)/3), rain: Math.round((averages[2].rain+averages[3].rain+averages[4].rain)/3*100)/100})
        seasonalAverage.push({name: 'Summer',temp: Math.round((averages[5].temp+averages[6].temp+averages[7].temp)/3), rain: Math.round((averages[5].rain+averages[6].rain+averages[7].rain)/3*100)/100})
        seasonalAverage.push({name: 'Fall', temp: Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3), rain: Math.round((averages[8].rain+averages[9].rain+averages[10].rain)/3*100)/100})
        seasonalAverage.push({name: 'Winter', temp: Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3), rain: Math.round((averages[11].rain+averages[0].rain+averages[1].rain)/3*100)/100})
        for(var i = 0; i<seasonalAverage.length; i++){
-        var seasonCol = $("<div>").addClass("col-md-3").append(seasonalAverage[i].name + seasonalAverage[i].temp);
+        var seasonCol = $("<div>").addClass("col-md-3").append(seasonalAverage[i].name +"<br>"+ seasonalAverage[i].temp+"&deg"+" F");
+        // adding style to weather - IMR
+        seasonCol.addClass("h5 text-dark my-auto text-center weatherStrip")
+
 
          $('#weather').append(seasonCol)
        }
@@ -93,19 +96,20 @@ function callZillow(address) {
       sortArrBy(data, 'price');
       var homeCandidates = [];
       homeCandidates.push(data[0]);
-      var d = (data.length - 2) / 4.0;//TODO: Let the 4 be a user input variable later on and move the data array to the global scope
+      var d = (data.length - 2) / 4.0;
       var i = 1;
+
       while (i * d < data.length - 2) {
         homeCandidates.push(data[Math.round(i * d - 1)]);
         i += 1;
       }
       homeCandidates.push(data[data.length - 1]);
-      console.log(homeCandidates)
       if (!homeCandidates[0]){
         $('#houseLoad').remove();
         $('#housingInfo').append('Housing Info Available for Major US Cities Only')
         return
       }
+
       for (var i = 0; i < homeCandidates.length; i++) {
         homeCandidates[i].index = i;
         var homeAddress = homeCandidates[i].name + " " + city + ' ' + state;
@@ -153,20 +157,38 @@ function callRestaurants(query) {
   })
     .then(function (response) {
       if (response.total == 0){
-        $('#restaurants').empty()
-        $('#restaurants').append("NO RESTAURANTS FOUND")
-        return
+        $('#restaurants').empty();
+        $('#restaurants').append("NO RESTAURANTS FOUND");
+        return;
       }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
-        //TODO place a marker at each lat and lon
-        var newRestaurant = $('<div>');
-        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('foodImage');
+        var newRestaurant = $('<div>').addClass("row border my-auto");
+        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-4 rounded foodImage');
+        var alias = response.businesses[i].alias.replace(/-/g,' ');
+        var aliasDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").html('<a href=' + response.businesses[i].url + " target='_blank'>" + alias + "</a>").css('text-transform','capitalize');
+        var priceDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").append(response.businesses[i].price);
+        
+        var rating = response.businesses[i].rating
+        var ratingImage = $("<img>")
+        if (rating == 5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_5.png')}
+        else if (rating == 4.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_4_half.png')}
+        else if (rating == 4){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_4.png')}
+        else if (rating == 3.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_3_half.png')}
+        else if (rating == 3){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_3.png')}
+        else if (rating == 2.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_2_half.png')}
+        else if (rating == 2){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_2.png')}
+        else if (rating == 1.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_1_half.png')}
+        else if (rating == 1){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_1.png')}
+        else if (rating == 0){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_0.png')}
 
+        var ratingDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto")
+        ratingDiv.append(ratingImage)
+        ratingDiv.append($('<div>').html(response.businesses[i].review_count + " reviews").css('font-size','24px'));
+       
         newRestaurant.append(newImage);
-        newRestaurant.append(response.businesses[i].alias);
-        newRestaurant.append(response.businesses[i].price);
-        newRestaurant.append(response.businesses[i].rating);
-
+        newRestaurant.append(aliasDiv);
+        newRestaurant.append(priceDiv);
+        newRestaurant.append(ratingDiv);
         newRestaurant.attr('id', 'restaurant' + i);
 
         $('#restaurants').append(newRestaurant);
@@ -252,11 +274,11 @@ function calcRoute(homeObject, origin, destination) {
       var duration = response.routes[0].legs[0].duration.text;
       var distance = response.routes[0].legs[0].distance.text;
 
-      var newRow = $('<div>').attr('id', homeObject.index).addClass('row').addClass(
-        'housing')
+      var newRow = $('<div>').attr('id', homeObject.index).addClass('row housing');
       newRow.data(response);
-      newRow.append($("<div>").html(homeObject.name).addClass('col-md-3'));
-      newRow.append($("<div>").html('$' + numberWithCommas(homeObject.zindex)).addClass('col-md-3'));
+      console.log('<a href='+homeObject.url+' target="_blank">'+homeObject.name+'</a>')
+      newRow.append($("<div>").html('<a href='+homeObject.url+' target="_blank">'+homeObject.name+'</a>').addClass('col-md-3'));
+      newRow.append($("<div>").html('$ ' + numberWithCommas(homeObject.zindex)).addClass('col-md-3'));
       newRow.append($("<div>").html(distance).addClass('col-md-3'));
       newRow.append($("<div>").html(duration).addClass('col-md-3'));
       $('#housingInfo').append(newRow);
@@ -317,6 +339,7 @@ function parseZillowXML(xml) {
   for (var i = 1; i < count; i++) {
     var neighborhood = {};
     neighborhood.name = data.children[i].children[1].innerHTML;
+    neighborhood.url = data.children[i].children[3].innerHTML;
     if (data.children[i].children[2].nodeName == ('zindex')) {
       neighborhood.zindex = +data.children[i].children[2].innerHTML;
     }
