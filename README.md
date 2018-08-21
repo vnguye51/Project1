@@ -12,10 +12,10 @@
 
 <h3>Screenshots<h3>
 
-![Alt text](./assets/images/Screenshot 2018-08-21 08.34.16.png)
-![Alt text](./assets/images/Screenshot 2018-08-21 08.35.24.png)
-![Alt text](./assets/images/Screenshot 2018-08-21 08.36.05.png)
-![Alt text](./assets/images/Screenshot 2018-08-21 08.36.32.png)
+![Alt text](./assets/images/Screenshot2018-08-2108.34.16.png)
+![Alt text](./assets/images/Screenshot2018-08-2108.35.24.png)
+![Alt text](./assets/images/Screenshot2018-08-2108.36.05.png)
+![Alt text](./assets/images/Screenshot2018-08-2108.36.32.png)
 
 <h3>Tech Utilized<h3>
 
