@@ -33,10 +33,15 @@
 <h3>Credits<h3>
 
 1. Vincent Ngyuen: Javascript, Api Calls on Details Tab
+    https://github.com/vnguye51
 2. Amico Kaur: Javascript, Api Calls on main Page
-3. Elena Belgum: Readme, css, bootstrap, images, formatting & styling
-4. Isaac Romero: Css, Bootstrap, fonts, formatting & styling
+    https://amicokaur.github.io/
+3. Isaac Romero: Css, Bootstrap, fonts, formatting & styling
+    http://iromero385.github.io/
+4. Elena Belgum: Readme, images, css, Bootstrap, formatting & styling
+    https://github.com/Counttalkula666
 5. Alex Pham: Job Ninja
+    https://www.youtube.com/channel/UCtm7E8o5lbdj0SGab8fWXXw
 
 
 
