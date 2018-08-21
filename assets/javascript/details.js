@@ -96,7 +96,7 @@ function callZillow(address) {
       sortArrBy(data, 'price');
       var homeCandidates = [];
       homeCandidates.push(data[0]);
-      var d = (data.length - 2) / 4.0;//TODO: Let the 4 be a user input variable later on and move the data array to the global scope
+      var d = (data.length - 2) / 4.0;
       var i = 1;
 
       while (i * d < data.length - 2) {
@@ -104,7 +104,6 @@ function callZillow(address) {
         i += 1;
       }
       homeCandidates.push(data[data.length - 1]);
-      console.log(homeCandidates)
       if (!homeCandidates[0]){
         $('#houseLoad').remove();
         $('#housingInfo').append('Housing Info Available for Major US Cities Only')
@@ -157,7 +156,6 @@ function callRestaurants(query) {
     error: function(){ $('#restaurants').empty(); $('#restaurants').append('Error connecting to Yelp database')}
   })
     .then(function (response) {
-      console.log(response)
       if (response.total == 0){
         $('#restaurants').empty();
         $('#restaurants').append("NO RESTAURANTS FOUND");
@@ -166,25 +164,26 @@ function callRestaurants(query) {
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
         var newRestaurant = $('<div>').addClass("row border my-auto");
         var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-4 rounded foodImage');
-        var aliasDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").append(response.businesses[i].alias);
+        var alias = response.businesses[i].alias.replace(/-/g,' ');
+        var aliasDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").html('<a href=' + response.businesses[i].url + " target='_blank'>" + alias + "</a>").css('text-transform','capitalize');
         var priceDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").append(response.businesses[i].price);
-        var rating = response.businesses[i].rating
         
+        var rating = response.businesses[i].rating
         var ratingImage = $("<img>")
-        if (rating == 5){ratingImage.attr('src','assets/images/Yelp/small_5.png')}
-        else if (rating == 4.5){ratingImage.attr('src','assets/images/Yelp/small_4_half.png')}
-        else if (rating == 4){ratingImage.attr('src','assets/images/Yelp/small_4.png')}
-        else if (rating == 3.5){ratingImage.attr('src','assets/images/Yelp/small_3_half.png')}
-        else if (rating == 3){ratingImage.attr('src','assets/images/Yelp/small_3.png')}
-        else if (rating == 2.5){ratingImage.attr('src','assets/images/Yelp/small_2_half.png')}
-        else if (rating == 2){ratingImage.attr('src','assets/images/Yelp/small_2.png')}
-        else if (rating == 1.5){ratingImage.attr('src','assets/images/Yelp/small_1_half.png')}
-        else if (rating == 1){ratingImage.attr('src','assets/images/Yelp/small_1.png')}
-        else if (rating == 0){ratingImage.attr('src','assets/images/Yelp/small_0.png')}
+        if (rating == 5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_5.png')}
+        else if (rating == 4.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_4_half.png')}
+        else if (rating == 4){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_4.png')}
+        else if (rating == 3.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_3_half.png')}
+        else if (rating == 3){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_3.png')}
+        else if (rating == 2.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_2_half.png')}
+        else if (rating == 2){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_2.png')}
+        else if (rating == 1.5){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_1_half.png')}
+        else if (rating == 1){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_1.png')}
+        else if (rating == 0){ratingImage.attr('src','assets/images/Yelp/extra_large/extra_large_0.png')}
 
-        var ratingDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto")
+        var ratingDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto")
         ratingDiv.append(ratingImage)
-        ratingDiv.append(response.businesses[i].rating).append($('<div>').html("Based on: " + response.businesses[i].review_count + "reviews"));
+        ratingDiv.append($('<div>').html(response.businesses[i].review_count + " reviews").css('font-size','24px'));
        
         newRestaurant.append(newImage);
         newRestaurant.append(aliasDiv);
@@ -278,7 +277,8 @@ function calcRoute(homeObject, origin, destination) {
 
       var newRow = $('<div>').attr('id', homeObject.index).addClass('row housing');
       newRow.data(response);
-      newRow.append($("<div>").html(homeObject.name).addClass('col-md-3'));
+      console.log('<a href='+homeObject.url+' target="_blank">'+homeObject.name+'</a>')
+      newRow.append($("<div>").html('<a href='+homeObject.url+' target="_blank">'+homeObject.name+'</a>').addClass('col-md-3'));
       newRow.append($("<div>").html('$ ' + numberWithCommas(homeObject.zindex)).addClass('col-md-3'));
       newRow.append($("<div>").html(distance).addClass('col-md-3'));
       newRow.append($("<div>").html(duration).addClass('col-md-3'));
@@ -340,6 +340,7 @@ function parseZillowXML(xml) {
   for (var i = 1; i < count; i++) {
     var neighborhood = {};
     neighborhood.name = data.children[i].children[1].innerHTML;
+    neighborhood.url = data.children[i].children[3].innerHTML;
     if (data.children[i].children[2].nodeName == ('zindex')) {
       neighborhood.zindex = +data.children[i].children[2].innerHTML;
     }
