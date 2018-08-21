@@ -43,7 +43,7 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
   $.ajax({
     url: queryURL,
     method: "GET",
-    error: function(message){console.log(message);$('#weather').empty(); $('#weather').append($('<div>').html(message.responseText))}
+    error: function(){$('#houseLoad2').remove();$('#weather').empty(); $('#weather').append($('<div>').html('No weather data found'))}
   })
     .then(function (response) {
        var monthArray = response.data.ClimateAverages[0].month
@@ -52,7 +52,7 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
          var temp = Math.round(((+monthArray[i].absMaxTemp_F) + (+monthArray[i].avgMinTemp_F))/2) //Tale the average of the min/max of each month
          averages.push({temp: temp, month: monthArray[i].name, rain: +monthArray[i].avgDailyRainfall})
        }
-
+       $('#houseLoad2').remove()
        var seasonalAverage = []
        seasonalAverage.push({name: 'Spring', temp: Math.round((averages[2].temp+averages[3].temp+averages[4].temp)/3), rain: Math.round((averages[2].rain+averages[3].rain+averages[4].rain)/3*100)/100})
        seasonalAverage.push({name: 'Summer',temp: Math.round((averages[5].temp+averages[6].temp+averages[7].temp)/3), rain: Math.round((averages[5].rain+averages[6].rain+averages[7].rain)/3*100)/100})
@@ -189,7 +189,6 @@ function callRestaurants(query) {
         newRestaurant.append(aliasDiv);
         newRestaurant.append(priceDiv);
         newRestaurant.append(ratingDiv);
-
         newRestaurant.attr('id', 'restaurant' + i);
 
         $('#restaurants').append(newRestaurant);
