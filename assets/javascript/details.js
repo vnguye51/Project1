@@ -43,7 +43,7 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
   $.ajax({
     url: queryURL,
     method: "GET",
-    error: function(){$('#weather').empty(); $('#weather').append($('<div>').html('No weather data found'))}
+    error: function(message){console.log(message);$('#weather').empty(); $('#weather').append($('<div>').html(message.responseText))}
   })
     .then(function (response) {
        var monthArray = response.data.ClimateAverages[0].month
@@ -157,18 +157,34 @@ function callRestaurants(query) {
     error: function(){ $('#restaurants').empty(); $('#restaurants').append('Error connecting to Yelp database')}
   })
     .then(function (response) {
+      console.log(response)
       if (response.total == 0){
         $('#restaurants').empty();
         $('#restaurants').append("NO RESTAURANTS FOUND");
         return;
       }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
-        //TODO place a marker at each lat and lon
         var newRestaurant = $('<div>').addClass("row border my-auto");
-        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-3 rounded foodImage');
-        var aliasDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].alias);
-        var priceDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].price);
-        var ratingDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].rating);
+        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-4 rounded foodImage');
+        var aliasDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").append(response.businesses[i].alias);
+        var priceDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").append(response.businesses[i].price);
+        var rating = response.businesses[i].rating
+        
+        var ratingImage = $("<img>")
+        if (rating == 5){ratingImage.attr('src','assets/images/Yelp/small_5.png')}
+        else if (rating == 4.5){ratingImage.attr('src','assets/images/Yelp/small_4_half.png')}
+        else if (rating == 4){ratingImage.attr('src','assets/images/Yelp/small_4.png')}
+        else if (rating == 3.5){ratingImage.attr('src','assets/images/Yelp/small_3_half.png')}
+        else if (rating == 3){ratingImage.attr('src','assets/images/Yelp/small_3.png')}
+        else if (rating == 2.5){ratingImage.attr('src','assets/images/Yelp/small_2_half.png')}
+        else if (rating == 2){ratingImage.attr('src','assets/images/Yelp/small_2.png')}
+        else if (rating == 1.5){ratingImage.attr('src','assets/images/Yelp/small_1_half.png')}
+        else if (rating == 1){ratingImage.attr('src','assets/images/Yelp/small_1.png')}
+        else if (rating == 0){ratingImage.attr('src','assets/images/Yelp/small_0.png')}
+
+        var ratingDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto")
+        ratingDiv.append(ratingImage)
+        ratingDiv.append(response.businesses[i].rating).append($('<div>').html("Based on: " + response.businesses[i].review_count + "reviews"));
        
         newRestaurant.append(newImage);
         newRestaurant.append(aliasDiv);
