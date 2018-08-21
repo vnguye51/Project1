@@ -110,7 +110,7 @@ function callZillow(address) {
         $('#housingInfo').append('Housing Info Available for Major US Cities Only')
         return
       }
-      
+
       for (var i = 0; i < homeCandidates.length; i++) {
         homeCandidates[i].index = i;
         var homeAddress = homeCandidates[i].name + " " + city + ' ' + state;
@@ -164,11 +164,11 @@ function callRestaurants(query) {
       }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
         //TODO place a marker at each lat and lon
-        var newRestaurant = $('<div>').addClass("row");
-        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-3 foodImage');
-        var aliasDiv = $("<div>").addClass("col-md-3").append(response.businesses[i].alias);
-        var priceDiv = $("<div>").addClass("col-md-3").append(response.businesses[i].price);
-        var ratingDiv = $("<div>").addClass("col-md-3").append(response.businesses[i].rating);
+        var newRestaurant = $('<div>').addClass("row border my-auto");
+        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-3 rounded foodImage');
+        var aliasDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].alias);
+        var priceDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].price);
+        var ratingDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].rating);
        
         newRestaurant.append(newImage);
         newRestaurant.append(aliasDiv);
