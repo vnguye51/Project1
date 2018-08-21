@@ -11,12 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!-- our own styling -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    
     <title>Job Ninja! - main page</title>
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-    </style>
 </head>
 
 <body>
@@ -24,21 +19,21 @@
     <div class="container">
         <!-- row 1 contains our header and title -->
         <div class="row">
-                <div class="col-md-12">
-                    <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
-                        <div class="container mx-auto" style="padding-left:32%">
-                            <p class="display-3 float-left navText animated bounce introDelay">Job Ninja!</p>
-                            <img class="logoStyle " src="assets/images/AlexNinja2.jpg"  alt="alex as a ninja">
-                        </div>
+            <div class="col-md-12">
+                <div class="jumbotron jumbotron-fluid p-3 mt-3 navtitle" style="border-radius: 10px">
+                    <div class="container mx-auto" style="padding-left:32%">
+                        <p class="display-3 float-left navText animated bounce introDelay">Job Ninja!</p>
+                        <img class="logoStyle animated zoomInUp delay-1Second" src="assets/images/AlexNinja2.jpg"  alt="alex as a ninja">
                     </div>
                 </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <form>
                     <div class="form-group">
                         <label style="font-weight:bold; color: rgb(43, 71, 1)">Job Search</label>
-                        <input type="text" class="form-control animated jello delay-HalfSecond" id="jsearchInput" placeholder="Enter job title">
+                        <input type="text" class="form-control" id="jsearchInput" placeholder="Enter job title">
                     </div>
                 </form> 
             </div>
@@ -63,7 +58,7 @@
             <div class="col-md-12">
                 <div class="card" style="border: black">
                     <!-- table goes here -->
-                    <table class="table" >
+                    <table  class="table" >
                         <thead class="card-header bg-Green" >
                             <a href='#'><tr>
                                 <th  class="toBeHiddenMobile" scope="col" style="font-weight: bold;" >Date Posted</th>
@@ -75,43 +70,22 @@
                         </thead>
                         <tbody id="jobList">
                             <tr>
-                                <!-- id all column 1 items -->
-                                <td class="toBeHiddenMobile" >8/15/2018</td>
-                                <td>FT</td>
-                                <td>Programmer</td>
-                                <td>New York,NY</td>
-                                <td class="toBeHiddenMobile"> www.Youwannaworkhere.com</td>
-
+                                
+                                
                             </tr>
                         </tbody>
                     </table>
+                    <div id="noResult" ></div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <script
   src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.3.1/firebase.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
-        // Initialize Firebase
-        var config = {
-            apiKey: "AIzaSyDblNnn9YtrO65sBpTIhWrHnDD3GNoVgOw",
-            authDomain: "project1-bc207.firebaseapp.com",
-            databaseURL: "https://project1-bc207.firebaseio.com",
-            projectId: "project1-bc207",
-            storageBucket: "project1-bc207.appspot.com",
-            messagingSenderId: "780592600359"
-        };
-        firebase.initializeApp(config);
-    </script>
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
     <script type='text/javascript' src='assets/javascript/app.js'></script>
     
     <!-- Google Maps API needs to be placed below the script that calls it -->
