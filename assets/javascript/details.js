@@ -156,13 +156,14 @@ function callRestaurants(query) {
     error: function(){ $('#restaurants').empty(); $('#restaurants').append('Error connecting to Yelp database')}
   })
     .then(function (response) {
+      $("#houseLoad3").remove();
       if (response.total == 0){
-        $('#restaurants').empty();
+        
         $('#restaurants').append("NO RESTAURANTS FOUND");
         return;
       }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
-        var newRestaurant = $('<div>').addClass("row border my-auto");
+        var newRestaurant = $('<div>').addClass("row border mt-2 pt-2 pb-2");
         var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-4 rounded foodImage');
         var alias = response.businesses[i].alias.replace(/-/g,' ');
         var aliasDiv = $("<div>").addClass("col-md-2 text-center h3 my-auto").html('<a href=' + response.businesses[i].url + " target='_blank'>" + alias + "</a>").css('text-transform','capitalize');
