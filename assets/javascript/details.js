@@ -59,7 +59,10 @@ function callWeather(address) {//Grab monthly weather data from World Weather On
        seasonalAverage.push({name: 'Fall', temp: Math.round((averages[8].temp+averages[9].temp+averages[10].temp)/3), rain: Math.round((averages[8].rain+averages[9].rain+averages[10].rain)/3*100)/100})
        seasonalAverage.push({name: 'Winter', temp: Math.round((averages[11].temp+averages[0].temp+averages[1].temp)/3), rain: Math.round((averages[11].rain+averages[0].rain+averages[1].rain)/3*100)/100})
        for(var i = 0; i<seasonalAverage.length; i++){
-        var seasonCol = $("<div>").addClass("col-md-3").append(seasonalAverage[i].name + seasonalAverage[i].temp);
+        var seasonCol = $("<div>").addClass("col-md-3").append(seasonalAverage[i].name +"<br>"+ seasonalAverage[i].temp+"&deg"+" F");
+        // adding style to weather - IMR
+        seasonCol.addClass("h5 text-dark my-auto text-center weatherStrip")
+
 
          $('#weather').append(seasonCol)
        }
@@ -95,6 +98,7 @@ function callZillow(address) {
       homeCandidates.push(data[0]);
       var d = (data.length - 2) / 4.0;//TODO: Let the 4 be a user input variable later on and move the data array to the global scope
       var i = 1;
+
       while (i * d < data.length - 2) {
         homeCandidates.push(data[Math.round(i * d - 1)]);
         i += 1;
@@ -106,6 +110,7 @@ function callZillow(address) {
         $('#housingInfo').append('Housing Info Available for Major US Cities Only')
         return
       }
+
       for (var i = 0; i < homeCandidates.length; i++) {
         homeCandidates[i].index = i;
         var homeAddress = homeCandidates[i].name + " " + city + ' ' + state;
@@ -153,19 +158,22 @@ function callRestaurants(query) {
   })
     .then(function (response) {
       if (response.total == 0){
-        $('#restaurants').empty()
-        $('#restaurants').append("NO RESTAURANTS FOUND")
-        return
+        $('#restaurants').empty();
+        $('#restaurants').append("NO RESTAURANTS FOUND");
+        return;
       }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
         //TODO place a marker at each lat and lon
-        var newRestaurant = $('<div>');
-        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('foodImage');
-
+        var newRestaurant = $('<div>').addClass("row border my-auto");
+        var newImage = $('<img>').attr('src', response.businesses[i].image_url).addClass('col-md-3 rounded foodImage');
+        var aliasDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].alias);
+        var priceDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].price);
+        var ratingDiv = $("<div>").addClass("col-md-3 text-center h3 my-auto").append(response.businesses[i].rating);
+       
         newRestaurant.append(newImage);
-        newRestaurant.append(response.businesses[i].alias);
-        newRestaurant.append(response.businesses[i].price);
-        newRestaurant.append(response.businesses[i].rating);
+        newRestaurant.append(aliasDiv);
+        newRestaurant.append(priceDiv);
+        newRestaurant.append(ratingDiv);
 
         newRestaurant.attr('id', 'restaurant' + i);
 
@@ -252,11 +260,10 @@ function calcRoute(homeObject, origin, destination) {
       var duration = response.routes[0].legs[0].duration.text;
       var distance = response.routes[0].legs[0].distance.text;
 
-      var newRow = $('<div>').attr('id', homeObject.index).addClass('row').addClass(
-        'housing')
+      var newRow = $('<div>').attr('id', homeObject.index).addClass('row housing');
       newRow.data(response);
       newRow.append($("<div>").html(homeObject.name).addClass('col-md-3'));
-      newRow.append($("<div>").html('$' + numberWithCommas(homeObject.zindex)).addClass('col-md-3'));
+      newRow.append($("<div>").html('$ ' + numberWithCommas(homeObject.zindex)).addClass('col-md-3'));
       newRow.append($("<div>").html(distance).addClass('col-md-3'));
       newRow.append($("<div>").html(duration).addClass('col-md-3'));
       $('#housingInfo').append(newRow);
