@@ -16,8 +16,7 @@
     }
     .toBeHiddenMobile{
       display: none;
-    }
-    
+    } 
   }
   #weather{
     background-image: url(../images/bgWeather2.jpg);
@@ -25,6 +24,17 @@
     background-repeat: no-repeat;
     background-position-y: top;
     background-size: cover;
+    height: 75px;
+  }
+  .weatherStrip{
+    opacity: .7;
+    background-color: azure;
+    /* background-image: url(../images/bgWeather2.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position-y: top;
+    background-size: cover; */
+  
   }
   
   body{
@@ -58,6 +68,10 @@
   height: 40px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+}
+.foodImage{
+  width: 400px;
+  border-radius: 8px;
 }
 
 /* Safari */

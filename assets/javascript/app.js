@@ -11,7 +11,7 @@ var jobCompany;
 var jobPosted;
 
 $("#search").on("click", function (event) {
-  event.preventDefault()
+  event.preventDefault();
 
   var jobSearch = $("#jsearchInput").val().trim();
   var jobState = $("#stateInput").val().trim();
