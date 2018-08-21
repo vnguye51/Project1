@@ -71,25 +71,13 @@
 #housingInfo:hover{
   cursor: pointer;
 }
-#company-jobTitle {
-  /* -webkit-animation-duration: 3s; */
-  -webkit-animation-delay: 2s;
-  -webkit-animation-iteration-count: 2;
-}
-.delay-HalfSecond{
-  -webkit-animation-delay: .5s;
-}
 .delay-1Second{
   -webkit-animation-delay: 1s;
 }
 .delay-1AndHalfSeconds{
   -webkit-animation-delay: 1.5s;
 }
-.delay-2Seconds{
-  -webkit-animation-delay: 2s;
-}
 .introDelay {
-  /* -webkit-animation-duration: 3s; */
   -webkit-animation-delay: 1s;
   -webkit-animation-iteration-count: 1;
 }

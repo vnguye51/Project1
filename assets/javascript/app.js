@@ -15,6 +15,8 @@ $("#search").on("click", function (event) {
 
   var jobSearch = $("#jsearchInput").val().trim();
   var jobState = $("#stateInput").val().trim();
+  $("#jsearchInput").val("");
+  $("#stateInput").val("");
 
   $.ajax({
     url: "https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description=" + jobSearch + "&location=" + jobState,
@@ -52,7 +54,7 @@ $("#search").on("click", function (event) {
       $('tbody').append(newRow)
       $('tbody').addClass("animated bounceInUp")
       }
-        })
+})
   
     $(document).on('click', '.jobEntry', function () {
     sessionStorage.responseArray = JSON.stringify(responseArray[+$(this).attr('data')]);
