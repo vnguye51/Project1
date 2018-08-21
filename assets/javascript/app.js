@@ -12,11 +12,10 @@ var jobPosted;
 
 $("#search").on("click", function (event) {
   event.preventDefault();
-
   var jobSearch = $("#jsearchInput").val().trim();
   var jobState = $("#stateInput").val().trim();
   $("#jsearchInput").val("");
-  $("#stateInput").val("");
+  $("#stateInput").val("California");
 
   $.ajax({
     url: "https://cors-anywhere.herokuapp.com/" + "https://jobs.github.com/positions.json?description=" + jobSearch + "&location=" + jobState,

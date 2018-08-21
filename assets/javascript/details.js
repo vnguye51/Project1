@@ -158,9 +158,9 @@ function callRestaurants(query) {
   })
     .then(function (response) {
       if (response.total == 0){
-        $('#restaurants').empty()
-        $('#restaurants').append("NO RESTAURANTS FOUND")
-        return
+        $('#restaurants').empty();
+        $('#restaurants').append("NO RESTAURANTS FOUND");
+        return;
       }
       for (var i = 0; i < response.businesses.length && i < 3; i++) {
         //TODO place a marker at each lat and lon
