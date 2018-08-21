@@ -70,7 +70,9 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div  class="card-header bg-Green"  >
-                                <strong>Season Weather Averages:</strong>
+                                <div class="loader mx-auto float-right" id ='houseLoad2'></div>
+                                <div style='padding:10px 0px; float: left'><strong >Season Weather Averages:</strong></div>
+                                <a href="https://developer.worldweatheronline.com/" target="_blank"><img alt="Weather API" src="https://cdn.worldweatheronline.net/staticv3/images/logo_small.png" style="border-style:solid; border-width:0px; height:43px; width:100px; float: right" /></a>
                             </div>
                             <div id="weatherStripMobile pt-0 pb-0" class="card-body">
                                   <div class="row" id='weather'>
@@ -85,13 +87,13 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header bg-Green" >
-                                        <strong>Housing in the area:</strong> 
-                                        
+                                        <div style='float:left;padding: 15px 0px'><strong>Housing in the area:</strong></div>
+                                        <div class="loader mx-auto float-right" id ='houseLoad'></div>
+                                        <a href='https://www.zillow.com/' target='_blank' style='float: right; padding: 3px 0px'><img src='https://www.zillowstatic.com/vstatic/b20c067/static/logos/Zillowlogo_200x50.gif'></a>
                                     </div>
                                     <div id="housingInfo" class="card-body">
                                         <div class="row">
                                             <div id="housingLocation" class="col-md-12"></div>
-                                            <div class="loader mx-auto" id ='houseLoad'></div>
                                         </div>
                                     </div>
                                 </div>
@@ -103,8 +105,10 @@
             <div class="row my-3">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header bg-Green" >
-                                    <strong>Addition Info: Food/Restaurant/Price/Rating(1-5)</strong> 
+                        <div class="card-header bg-Green " style='padding-top:0px; padding-bottom:0px'>
+                            <div class="loader mx-auto float-right" id ='houseLoad3'></div>
+                            <a href='https://www.yelp.com/' target='_blank' style='float: right'><img src='assets/images/Yelp/Logo.png' width='120 px'></a>
+                            <div style='float:left; padding: 30px 0px;'><strong>Addition Info: Food/Restaurant/Price/Rating(1-5)</strong> </div>
                         </div>
                         <div class="card-body" id='restaurants'>
                         </div>
