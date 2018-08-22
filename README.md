@@ -40,7 +40,7 @@ Img 6 - Available Housing For Sale<br>
 <br>
 Img 7 - Most Popular Area Restaurants<br>
 <br>
-![Commute Distance and Time Detail Image](1\assets\images\Screenshot8.png)
+![Commute Distance and Time Detail Image](.\assets\images\Screenshot8.png)
 <br>
 Img 8 - Commute Distance and Time<br>
 
