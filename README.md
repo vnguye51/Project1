@@ -13,19 +13,19 @@
 <h3>Screenshots<h3>
 
 ![Opening Page Image](./assets/images/Screenshot1.png)
-Opening Page Image
+Opening Page Image<br>
 ![Initial Search Image](./assets/images/Screenshot2.png)
-Initial Search Image
+Initial Search Image<br>
 ![Job Detail Tab Image](./assets/images/Screenshot3.png)
-Job Detail Tab Image
+Job Detail Tab Image<br>
 ![Map Detail Image](./assets/images/Screenshot4.png)
-Map Detail Image
+Map Detail Image<br>
 ![Average Weather Detail Image](./assets/images/Screenshot5.png)
-Average Weather Detail Image
+Average Weather Detail Image<br>
 ![Available Housing For Sale Detail Image](./assets/images/Screenshot6.png)
-Available Housing For Sale Detail Image
+Available Housing For Sale Detail Image<br>
 ![Most Popular Area Restaurants Detail Image](./assets/images/Screenshot4.png)
-Most Popular Area Restaurants Detail Image
+Most Popular Area Restaurants Detail Image<br>
 
 <h3>Tech Utilized<h3>
 
