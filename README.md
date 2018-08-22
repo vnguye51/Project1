@@ -83,5 +83,4 @@ https://use.fontawesome.com/releases/v5.2.0/css/all.css
 5. Alex Pham: Job Ninja<br>
     https://www.youtube.com/channel/UCtm7E8o5lbdj0SGab8fWXXw
 
-
-
+![Job Ninja!](./assets/images/AlexNinjaTransparent.png)
