@@ -8,7 +8,7 @@
 
 <h3>Instructions for use:<h3>
 
-<p>Simply enter job desired and state location in the provided search fields in our main page and click search. After selecting a job you are interested in from the search results, click to open a new tab which will display details of the job as well as the location, local traffic and commute times, average area weather, available housing and area restaurants.<p>
+<p>In our main page, simply enter the job title and the state you would like to search in the provided search fields and click the search button. A list of available jobs meeting those criteria will populate. After selecting a job you are interested in from the search results, click that job to open a new tab. The new tab will display the details of that job to the left and helpful related information on the right. The additional information includes: a map of the company location, the average local weather for the current season, local available housing for purchase and the most popular local restaurants. In addition, you may view local traffic and commute times to the job from the available houses by clicking on the distance in miles located to the right. <p>
 
 <h3>Screenshots:<h3>
 
@@ -41,9 +41,21 @@ Available Housing For Sale Detail Image<br>
 Most Popular Area Restaurants Detail Image<br>
 <br>
 
-<h3>Tech Utilized:<h3>
+<h3> Technologies Used <h3>
 
-<p>In the construction of this website we have used: html, css, Javascript, Jquery and Bootstrap. We have also utilized the libraries: Animated css & Font Awesome.<p>
+<h4>The following frameworks and languages were used in the construction of this website:<h4>
+ HTML, CSS & JavaScript.
+
+<h4>We have also utilized the following libraries:<h4>
+
+1. Jquery - https://jquery.com/
+https://code.jquery.com/jquery-3.3.1.min.js
+2. Bootstrap - https://getbootstrap.com/
+https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.ccs
+3. Animate.Css - https://daneden.github.io/animate.css/
+https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css
+4. Font Awesome -https://fontawesome.com/free
+https://use.fontawesome.com/releases/v5.2.0/css/all.css
 
 <h3>API References:<h3>
 
