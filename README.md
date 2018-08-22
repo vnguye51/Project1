@@ -2,19 +2,19 @@
 
 <h2>The comprehensive job and area search site for web developers.<h2>
 
-<h3>Description:<h3>
+<h3>Motivation and Description:<h3>
 
-<p>We have built a national job search engine for web developers which also gives users details about area traffic, commute times, average weather, available housing with average cost and popular area restaurants for selected jobs.<p>
+<p>Asked as a group to create a website utilizing API calls, the authors each had ideas of sites they would like to build. Unable to immediatley come to a consensus, the ideas were combined to make a comprehensive national job search site for Web Developers with many additional features. The site first lists jobs of interest but also gives users details about area traffic, commute times, average weather, available housing with average cost and popular area restaurants for selected jobs.<p>
 
 <h3>Instructions for use:<h3>
 
-<p>In our main page, simply enter the job title and the state you would like to search in the provided search fields and click the search button. A list of available jobs meeting those criteria will populate. After selecting a job you are interested in from the search results, click that job to open a new tab. The new tab will display the details of that job to the left and helpful related information on the right. The additional information includes: a map of the company location, the average local weather for the current season, local available housing for purchase and the most popular local restaurants. In addition, you may view local traffic and commute times to the job from the available houses by clicking on the distance in miles located to the right. <p>
+<p>In our main page, simply enter the job title and the state you would like to search in the provided search fields and click the search button(img 1). A list of available jobs meeting those criteria will populate (img 2). After selecting a job you are interested in from the search results, click that job to open a new tab. The new tab will display the details of that job to the left and helpful related information on the right (img 3). The additional information includes: a map of the company location(img 4), the average local weather for the current season(img 5),local available housing for purchase (img 6) and the most popular local restaurants (img 7). In addition, you may view local traffic and commute times to the job from the available houses by clicking on the distance in miles located to the right (img 8). <p>
 
 <h3>Screenshots:<h3>
 
 ![Opening Page Image](./assets/images/Screenshot1.png)
 <br>
-Opening Page Image<br>
+Img 1 - Opening Page Image<br>
 <br>
 ![Initial Search Image](./assets/images/Screenshot2.png)
 <br>
