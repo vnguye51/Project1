@@ -59,6 +59,7 @@ https://use.fontawesome.com/releases/v5.2.0/css/all.css
 
 <h3>API References:<h3>
 <h4>Below are the links to the APis used<h4>
+
 1. Github Jobs - https://jobs.github.com/api
 2. Zillow - https://www.zillow.com/howto/api/GetSearchResults.htm
 3. World Weather Online - https://developer.worldweatheronline.com/api/
