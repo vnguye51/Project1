@@ -14,32 +14,35 @@
 
 ![Opening Page Image](./assets/images/Screenshot1.png)
 <br>
-Img 1 - Opening Page Image<br>
+Img 1 - Opening Page<br>
 <br>
 ![Initial Search Image](./assets/images/Screenshot2.png)
 <br>
-Initial Search Image<br>
+Img 2 - Initial Search<br>
 <br>
 ![Job Detail Tab Image](./assets/images/Screenshot3.png)
 <br>
-Job Detail Tab Image<br>
+Img 3 - Job Detail Tab<br>
 <br>
-![Map Detail Image](./assets/images/Screenshot4.png)
+![Company Locartion Map Detail Image](./assets/images/Screenshot4.png)
 <br>
-Map Detail Image<br>
+Img 4 - Company Location Map <br>
 <br>
 ![Average Weather Detail Image](./assets/images/Screenshot5.png)
 <br>
-Average Weather Detail Image<br>
+Img 5 - Average Local Weather<br>
 <br>
 ![Available Housing For Sale Detail Image](./assets/images/Screenshot6.png)
 <br>
-Available Housing For Sale Detail Image<br>
+Img 6 - Available Housing For Sale<br>
 <br>
 ![Most Popular Area Restaurants Detail Image](./assets/images/Screenshot7.png)
 <br>
-Most Popular Area Restaurants Detail Image<br>
+Img 7 - Most Popular Area Restaurants<br>
 <br>
+![Commute Distance and Time Detail Image](1\assets\images\Screenshot8.png)
+<br>
+Img 8 - Commute Distance and Time<br>
 
 <h3>Technologies Used:<h3>
 
