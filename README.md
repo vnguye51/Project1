@@ -48,23 +48,23 @@ Most Popular Area Restaurants Detail Image<br>
 
 <h4>We have also utilized the following libraries:<h4>
 
-1. Jquery - https://jquery.com/
+1. Jquery - https://jquery.com/<br>
 https://code.jquery.com/jquery-3.3.1.min.js
-2. Bootstrap - https://getbootstrap.com/
+2. Bootstrap - https://getbootstrap.com/<br>
 https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.ccs
-3. Animate.Css - https://daneden.github.io/animate.css/
+3. Animate.Css - https://daneden.github.io/animate.css/<br>
 https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css
-4. Font Awesome -https://fontawesome.com/free
+4. Font Awesome -https://fontawesome.com/free<br>
 https://use.fontawesome.com/releases/v5.2.0/css/all.css
 
 <h3>API References:<h3>
-
+<h4>
 1. Github Jobs - https://jobs.github.com/api
 2. Zillow - https://www.zillow.com/howto/api/GetSearchResults.htm
 3. World Weather Online - https://developer.worldweatheronline.com/api/
 4. Google Maps - https://developers.google.com/maps/documentation/
 5. Google Places - https://developers.google.com/places/web-service/intro
-6. Yelp - https://www.yelp.com/developers
+6. Yelp - https://www.yelp.com/developers<h4>
 
 <h3>Credits:<h3>
 
