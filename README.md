@@ -1,12 +1,12 @@
-<h1>**Job Ninja!**<h1>
+<h1>Job Ninja!<h1>
 
 <h2>The comprehensive job and area search site for web developers.<h2>
 
-<h3>**Description:**<h3>
+<h3>Description:<h3>
 
 <p>We have built a national job search engine for web developers which also gives users details about area traffic, commute times, average weather, available housing with average cost and popular area restaurants for selected jobs.<p>
 
-<h3>**Instructions for use:**<h3>
+<h3>Instructions for use:<h3>
 
 <p>Simply enter job desired and state location in the provided search fields in our main page and click search. After selecting a job you are interested in from the search results, click to open a new tab which will display details of the job as well as the location, local traffic and commute times, average area weather, available housing and area restaurants.<p>
 
@@ -14,11 +14,11 @@
 
 ![Opening Page Image](./assets/images/Screenshot1.png)
 <br>
-<h5>Opening Page Image<h5><br>
+Opening Page Image<br>
 <br>
 ![Initial Search Image](./assets/images/Screenshot2.png)
 <br>
-<h5>Initial Search Image<h5><br>
+Initial Search Image<br>
 <br>
 ![Job Detail Tab Image](./assets/images/Screenshot3.png)
 <br>
@@ -41,7 +41,7 @@ Available Housing For Sale Detail Image<br>
 Most Popular Area Restaurants Detail Image<br>
 <br>
 
-<h3>**Tech Utilized:**
+<h3>Tech Utilized:<h3>
 
 <p>In the construction of this website we have used: html, css, Javascript, Jquery and Bootstrap. We have also utilized the libraries: Animated css & Font Awesome.<p>
 
