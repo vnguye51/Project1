@@ -1,4 +1,4 @@
-<h1><strong>Job Ninja!<h1>
+<h1>Job Ninja!<h1>
 
 <h2>The comprehensive job and area search site for web developers.<h2>
 
