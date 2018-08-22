@@ -6,11 +6,11 @@
 
 <p>We have built a national job search engine for web developers which also gives users details about area traffic, commute times, average weather, available housing with average cost and popular area restaurants for selected jobs.<p>
 
-<h3>**Instructions for use:**<h3>
+###**Instructions for use:**
 
 <p>Simply enter job desired and state location in the provided search fields in our main page and click search. After selecting a job you are interested in from the search results, click to open a new tab which will display details of the job as well as the location, local traffic and commute times, average area weather, available housing and area restaurants.<p>
 
-<h3>**Screenshots:**<h3>
+###**Screenshots:**
 
 ![Opening Page Image](./assets/images/Screenshot1.png)
 Opening Page Image<br>
@@ -27,11 +27,11 @@ Available Housing For Sale Detail Image<br>
 ![Most Popular Area Restaurants Detail Image](./assets/images/Screenshot4.png)
 Most Popular Area Restaurants Detail Image<br>
 
-<h3>**Tech Utilized:**<h3>
+###**Tech Utilized:**
 
 <p>In the construction of this website we have used: html, css, Javascript, Jquery and Bootstrap. We have also utilized the libraries: Animated css & Font Awesome.<p>
 
-<h3>**API References:**<h3>
+###**API References:**
 
 1. Github Jobs - https://jobs.github.com/api
 2. Zillow - https://www.zillow.com/howto/api/GetSearchResults.htm
@@ -40,7 +40,7 @@ Most Popular Area Restaurants Detail Image<br>
 5. Google Places - https://developers.google.com/places/web-service/intro
 6. Yelp - https://www.yelp.com/developers
 
-<h3>**Credits:**<h3>
+###**Credits:**
 
 1. Vincent Ngyuen: Javascript, Api Calls on Details Tab<br>
     https://vnguye51.github.io/
