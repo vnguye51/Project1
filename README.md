@@ -1,4 +1,4 @@
-<h1>Job Ninja!<h1>
+<h1><strong>Job Ninja!<h1>
 
 <h2>The comprehensive job and area search site for web developers.<h2>
 
@@ -45,7 +45,7 @@ Most Popular Area Restaurants Detail Image<br>
 
 <p>In the construction of this website we have used: html, css, Javascript, Jquery and Bootstrap. We have also utilized the libraries: Animated css & Font Awesome.<p>
 
-<h3>**API References:**
+<h3>API References:<h3>
 
 1. Github Jobs - https://jobs.github.com/api
 2. Zillow - https://www.zillow.com/howto/api/GetSearchResults.htm
@@ -54,7 +54,7 @@ Most Popular Area Restaurants Detail Image<br>
 5. Google Places - https://developers.google.com/places/web-service/intro
 6. Yelp - https://www.yelp.com/developers
 
-<h3>**Credits:**
+<h3>Credits:<h3>
 
 1. Vincent Ngyuen: Javascript, Api Calls on Details Tab<br>
     https://vnguye51.github.io/
