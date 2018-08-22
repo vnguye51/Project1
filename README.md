@@ -36,14 +36,14 @@ Average Weather Detail Image<br>
 <br>
 Available Housing For Sale Detail Image<br>
 <br>
-![Most Popular Area Restaurants Detail Image](./assets/images/Screenshot4.png)
+![Most Popular Area Restaurants Detail Image](./assets/images/Screenshot7.png)
 <br>
 Most Popular Area Restaurants Detail Image<br>
 <br>
 
-<h3> Technologies Used <h3>
+<h3>Technologies Used:<h3>
 
-<h4>The following frameworks and languages were used in the construction of this website:<h4>
+<h4>Frameworks and languages used in the construction of this site:<h4>
  HTML, CSS & JavaScript.
 
 <h4>We have also utilized the following libraries:<h4>
