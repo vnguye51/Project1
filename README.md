@@ -80,7 +80,8 @@ https://use.fontawesome.com/releases/v5.2.0/css/all.css
     http://iromero385.github.io/
 4. Elena Belgum: Readme, images, css, Bootstrap, formatting & styling<br>
     https://github.com/Counttalkula666
-5. Alex Pham: Job Ninja<br>
+5. Special thanks to: Alex Pham, Job Ninja!<br>
     https://www.youtube.com/channel/UCtm7E8o5lbdj0SGab8fWXXw
 
-![Job Ninja!](./assets/images/AlexNinjaTransparent.png)
+![Alex Pham - Job Ninja!](./assets/images/AlexNinjaTransparent.png)
+
