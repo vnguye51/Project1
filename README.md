@@ -58,13 +58,13 @@ https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css
 https://use.fontawesome.com/releases/v5.2.0/css/all.css
 
 <h3>API References:<h3>
-<h4>
+<h4>Below are the links to the APis used<h4>
 1. Github Jobs - https://jobs.github.com/api
 2. Zillow - https://www.zillow.com/howto/api/GetSearchResults.htm
 3. World Weather Online - https://developer.worldweatheronline.com/api/
 4. Google Maps - https://developers.google.com/maps/documentation/
 5. Google Places - https://developers.google.com/places/web-service/intro
-6. Yelp - https://www.yelp.com/developers<h4>
+6. Yelp - https://www.yelp.com/developers
 
 <h3>Credits:<h3>
 
