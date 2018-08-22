@@ -1,6 +1,6 @@
 <h1>Job Ninja!<h1> 
 
-![AlexNinjaSmall](./assets/images/AlexNinjaTransparentSmall.png)
+<img src="./assets/images/AlexNinjaTransparentSmall.png" width=150/>
 
 <h2>The comprehensive job and area search site for web developers.<h2>
 
