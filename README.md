@@ -12,20 +12,20 @@
 
 <h3>Screenshots<h3>
 
-![Alt text](./assets/images/Screenshot1.png)
-<h4>Opening Page Image<h4>
-![Alt text](./assets/images/Screenshot2.png)
-<h4>Initial Search Image<h4>
-![Alt text](./assets/images/Screenshot3.png)
-<h4>Job Detail Tab Image<h4>
-![Alt text](./assets/images/Screenshot4.png)
-<h4>Map Detail Image<h4>
-![Alt text](./assets/images/Screenshot5.png)
-<h4>Average Weather Detail Image<h4>
-![Alt text](./assets/images/Screenshot6.png)
-<h4>Available Housing For Sale Detail Image<h4>
-![Alt text](./assets/images/Screenshot4.png)
-<h4>Most Popular Area Restaurants Detail Image<h4>
+![Opening Page Image](./assets/images/Screenshot1.png)
+Opening Page Image
+![Initial Search Image](./assets/images/Screenshot2.png)
+Initial Search Image
+![Job Detail Tab Image](./assets/images/Screenshot3.png)
+Job Detail Tab Image
+![Map Detail Image](./assets/images/Screenshot4.png)
+Map Detail Image
+![Average Weather Detail Image](./assets/images/Screenshot5.png)
+Average Weather Detail Image
+![Available Housing For Sale Detail Image](./assets/images/Screenshot6.png)
+Available Housing For Sale Detail Image
+![Most Popular Area Restaurants Detail Image](./assets/images/Screenshot4.png)
+Most Popular Area Restaurants Detail Image
 
 <h3>Tech Utilized<h3>
 
