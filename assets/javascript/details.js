@@ -39,7 +39,7 @@ $('#housingInfo').on('dataAdded', function (event, index) {
 
 function callWeather(address) {//Grab monthly weather data from World Weather Online
   var ZIP = address[2].slice(3, 8);
-  var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://api.worldweatheronline.com/premium/v1/weather.ashx?key=c93c25b0d0834362bec82456181808&q=" + ZIP + "&mca=yes&format=json";
+  var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://api.worldweatheronline.com/premium/v1/weather.ashx?=YOURAPIKEYHERE" + ZIP + "&mca=yes&format=json";
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -80,7 +80,7 @@ function callZillow(address) {
   var state = address[2];
   var country = address[3];
   var businessAddress = street + " " + city + " " + state;
-  var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=X1-ZWz18f1y9es74b_7x5fi&state=" + state + "&city=" + city + "&childtype=neighborhood";
+  var queryURL = "https://cors-anywhere.herokuapp.com/" + "http://www.zillow.com/webservice/GetRegionChildren.htm?zws-id=ZPIKEYHERE&state=" + state + "&city=" + city + "&childtype=neighborhood";
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -123,7 +123,8 @@ function callZillow(address) {
 // /THIS AJAX CALL ALSO RETURNS AN IMAGE OF THE COMPANY MIGHT BE USEFUL TO ADD
 query = jobInfo.location + " " + jobInfo.company;
 function callGoogle(query, secondPass) {
-  queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "&key=AIzaSyAZn90iyzUTnVjifVYvQh7uWUczvW-UsMo"
+  queryURL = "https://cors-anywhere.herokuapp.com/" + "https://maps.googleapis.com/maps/api/place/textsearch/json?query=" + query + "APIKEYHERE
+"
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -151,7 +152,7 @@ function callRestaurants(query) {
     url: queryURL,
     method: "GET",
     headers: {
-      'Authorization': 'Bearer 39gMve0deRFdd0qGL2vFqZy8aAHYc69RlyFPR631QYuffuWibybqZlVEBs8Lxa_J1bPqAxtn1d3vBgPYD6wGmICH1mMQ3W3mI4aqQCLZtxVy4B4queBgqXadlBZ6W3Yx',
+      'Authorization': 'Bearer APIKEYHERE',
     },
     error: function(){ $('#restaurants').empty(); $('#restaurants').append('Error connecting to Yelp database')}
   })
